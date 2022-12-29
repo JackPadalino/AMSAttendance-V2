@@ -10,6 +10,27 @@ const Class = db.define("class", {
   name: {
     type: Sequelize.STRING
   },
+  grade:{
+    type:Sequelize.INTEGER,
+    validate:{
+      min:6,
+      max:12
+    },
+    allowNull:false
+  },
+  school:{
+    type:Sequelize.ENUM,
+    allowNull:false,
+    values:['MS','HS']
+  },
+  period:{
+    type:Sequelize.INTEGER,
+    validate:{
+      min:1,
+      max:7
+    },
+    allowNull:false,
+  },
   startTime:{
     type:Sequelize.INTEGER,
     allowNull:false,
