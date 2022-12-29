@@ -3,8 +3,6 @@ const {
     User,
     Class,
     UserClass,
-    HSSchedule,
-    MSSchedule,
     Day,
     Absence,
     Coverage,
