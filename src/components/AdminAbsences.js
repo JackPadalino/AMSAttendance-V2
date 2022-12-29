@@ -5,7 +5,7 @@ import { NotFoundPage } from ".";
 import { setDate,setDay,setAllAbsences } from "../store/adminSlice";
 import { useSelector, useDispatch } from "react-redux";
 
-const Admin = () => {
+const AdminAbsences = () => {
     const dispatch = useDispatch();
     const { date,day,allAbsences } = useSelector((state) => state.admin);
     const [token, setToken] = useState(window.localStorage.getItem("token"));
@@ -48,4 +48,4 @@ const Admin = () => {
     );
 };
 
-export default Admin;
+export default AdminAbsences;
