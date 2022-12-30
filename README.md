@@ -1,5 +1,6 @@
 # AMSAttendance-V2
-*Includes letter days and MS/HS schedules*
+*Includes MS/HS schedules*
+*Excludes letter days*
 
 Express JS app to automate teacher attendance and staff covereages.
 

@@ -4,10 +4,12 @@ import { setUser } from "../store/userSlice";
 import axios from "axios";
 import { Link, Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { NotFoundPage } from ".";
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [token, setToken] = useState(window.localStorage.getItem("token"));
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
@@ -38,6 +40,7 @@ const Login = () => {
     loginWithToken(token);
   };
 
+  if(token) return <p>You are already logged in.</p>
   return (
     <div>
       <h1>Login</h1>

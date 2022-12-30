@@ -3,5 +3,7 @@ export { default as NotFoundPage } from './NotFoundPage';
 export { default as Navbar } from './Navbar';
 export { default as Home } from './Home';
 export { default as Login } from './Login';
-export { default as Admin } from './Admin';
+export { default as AdminAbsences } from './AdminAbsences';
+export { default as AdminAddTeacher } from './AdminAddTeacher';
+export { default as AdminAddClass } from './AdminAddClass';
 export { default as SingleClass } from './SingleClass';

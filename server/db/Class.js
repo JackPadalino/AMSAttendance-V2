@@ -10,19 +10,62 @@ const Class = db.define("class", {
   name: {
     type: Sequelize.STRING
   },
-  isFreePeriod:{
-    type:Sequelize.BOOLEAN,
-    defaultValue:false
+  // will need to add identifier code eventually
+  school:{
+    type:Sequelize.ENUM,
+    allowNull:false,
+    values:['MS','HS']
   },
-  period: {
-    type: Sequelize.INTEGER,
-    validate: {
-        isInt: true,
-        min:1,
-        max:7
+  grade:{
+    type:Sequelize.INTEGER,
+    validate:{
+      min:6,
+      max:12
     },
-  }
-  // need to add "startTime" and "endTime" for comparing MS to HS schedules later on
+    allowNull:false,
+  },
+  period:{
+    type:Sequelize.INTEGER,
+    validate:{
+      min:1,
+      max:7
+    },
+    allowNull:false,
+  },
+  letterDays:{
+    type:Sequelize.ARRAY(Sequelize.CHAR),
+    allowNull:false
+  },
+  // grade:{
+  //   type:Sequelize.INTEGER,
+  //   validate:{
+  //     min:6,
+  //     max:12
+  //   },
+  //   allowNull:false
+  // },
+  // isFreePeriod:{
+  //   type:Sequelize.BOOLEAN,
+  //   defaultValue:false
+  // },
+  // startTime:{
+  //   type:Sequelize.INTEGER,
+  //   allowNull:false,
+  //   validate:{
+  //     isInt:true,
+  //     min:600,
+  //     max:1800
+  //   }
+  // },
+  // endTime:{
+  //   type:Sequelize.INTEGER,
+  //   allowNull:false,
+  //   validate:{
+  //     isInt:true,
+  //     min:600,
+  //     max:1800
+  //   }
+  // },
 });
 
 module.exports = Class;
