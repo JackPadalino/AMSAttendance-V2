@@ -190,86 +190,90 @@ const seed = async () => {
     const classesList = [
         //~~~~~HS classes~~~~~//
         // 9th grade classes
-        {name:'Global History',school:'HS',period:1,letterDays:['A','B','C','D','E','F']},
-        {name:'ELA',school:'HS',period:3,letterDays:['A','B','C','D','E','F']},
-        {name:'Oppong Advisory',school:'HS',period:4,letterDays:['B','E']},
-        {name:'Art Fundamentals',school:'HS',period:4,letterDays:['A','C','D','F']},
-        {name:'Rosado Advisory',school:'HS',period:4,letterDays:['B','E']},
-        {name:'ELA',school:'HS',period:6,letterDays:['A','B','C','D','E','F']},
-        {name:'Global History',school:'HS',period:7,letterDays:['A','B','C','D','E','F']},
-        {name:'Physics',school:'HS',period:7,letterDays:['A','B','C','D','E','F']},
+        {name:'Global History',school:'HS',grade:9,period:1,letterDays:['A','B','C','D','E','F']},
+        {name:'ELA',school:'HS',grade:9,period:3,letterDays:['A','B','C','D','E','F']},
+        {name:'Oppong Advisory',school:'HS',grade:9,period:4,letterDays:['B','E']},
+        {name:'Art Fundamentals',school:'HS',grade:9,period:4,letterDays:['A','C','D','F']},
+        {name:'Rosado Advisory',school:'HS',grade:9,period:4,letterDays:['B','E']},
+        {name:'ELA',school:'HS',grade:9,period:6,letterDays:['A','B','C','D','E','F']},
+        {name:'Global History',school:'HS',grade:9,period:7,letterDays:['A','B','C','D','E','F']},
+        {name:'Physics',school:'HS',grade:9,period:7,letterDays:['A','B','C','D','E','F']},
         // 10th grade classes
-        {name:'Living Environment',school:'HS',period:1,letterDays:['A','B','C','D','E','F']},
-        {name:'ELA',school:'HS',period:2,letterDays:['A','B','C','D','E','F']},
-        {name:'Sohna Advisory',school:'HS',period:3,letterDays:['A','D']},
-        {name:'Intro. to CS1',school:'HS',period:3,letterDays:['B','C','E','F']},
-        {name:'Intro. to CS2',school:'HS',period:3,letterDays:['B','C','E','F']},
-        {name:'Painting',school:'HS',period:4,letterDays:['A','C','E',]},
-        {name:'Living Environment',school:'HS',period:6,letterDays:['A','B','C','D','E','F']},
-        {name:'Living Environment',school:'HS',period:7,letterDays:['A','B','C','D','E','F']},
+        {name:'Living Environment',school:'HS',grade:10,period:1,letterDays:['A','B','C','D','E','F']},
+        {name:'ELA',school:'HS',grade:10,period:2,letterDays:['A','B','C','D','E','F']},
+        {name:'Sohna Advisory',school:'HS',grade:10,period:3,letterDays:['A','D']},
+        {name:'Intro. to CS1',school:'HS',grade:10,period:3,letterDays:['B','C','E','F']},
+        {name:'Intro. to CS2',school:'HS',grade:10,period:3,letterDays:['B','C','E','F']},
+        {name:'Painting',school:'HS',grade:10,period:4,letterDays:['A','C','E',]},
+        {name:'Living Environment',school:'HS',grade:10,period:6,letterDays:['A','B','C','D','E','F']},
+        {name:'Living Environment',school:'HS',grade:10,period:7,letterDays:['A','B','C','D','E','F']},
         // 11th grade classes
-        {name:'AP Computer Science Principles',school:'HS',period:1,letterDays:['A','B','C','D','E','F']},
-        {name:'ELA',school:'HS',period:1,letterDays:['A','B','C','D','E','F']},
-        {name:'US History',school:'HS',period:1,letterDays:['A','B','C','D','E','F']},
-        {name:'Tech Careers',school:'HS',period:2,letterDays:['A','B',,'D','E']},
-        {name:'Lyons Advisory',school:'HS',period:2,letterDays:['A','D']},
-        {name:'Photography',school:'HS',period:2,letterDays:['C','F']},
-        {name:'US History',school:'HS',period:3,letterDays:['A','B','C','D','E','F']},
-        {name:'ELA',school:'HS',period:3,letterDays:['A','B','C','D','E','F']},
-        {name:'Painting',school:'HS',period:4,letterDays:['B','D','F']},
-        {name:'US History',school:'HS',period:7,letterDays:['A','B','C','D','E','F']},
-        {name:'ELA',school:'HS',period:7,letterDays:['A','B','C','D','E','F']},
+        {name:'AP Computer Science Principles',school:'HS',grade:11,period:1,letterDays:['A','B','C','D','E','F']},
+        {name:'ELA',school:'HS',grade:11,period:1,letterDays:['A','B','C','D','E','F']},
+        {name:'US History',school:'HS',grade:11,period:1,letterDays:['A','B','C','D','E','F']},
+        {name:'Tech Careers',school:'HS',grade:11,period:2,letterDays:['A','B','D','E']},
+        {name:'Lyons Advisory',school:'HS',grade:11,period:2,letterDays:['A','D']},
+        {name:'Photography',school:'HS',grade:11,period:2,letterDays:['C','F']},
+        {name:'US History',school:'HS',grade:11,period:3,letterDays:['A','B','C','D','E','F']},
+        {name:'ELA',school:'HS',grade:11,period:3,letterDays:['A','B','C','D','E','F']},
+        {name:'Music Production',school:'HS',grade:11,period:4,letterDays:['B','E']},
+        {name:'Painting',school:'HS',grade:11,period:4,letterDays:['B','D','F']},
+        {name:'US History',school:'HS',grade:11,period:7,letterDays:['A','B','C','D','E','F']},
+        {name:'ELA',school:'HS',grade:11,period:7,letterDays:['A','B','C','D','E','F']},
         // 12th grade classes
-        {name:'Econ. & Gov.',school:'HS',period:1,letterDays:['A','B','C','D','E','F']},
-        {name:'Photography',school:'HS',period:2,letterDays:['B','E']},
-        {name:'Padalino advisory',school:'HS',period:2,letterDays:['C','F']},
-        {name:'Carsky advisory',school:'HS',period:2,letterDays:['C','F']},
-        {name:'Watson advisory',school:'HS',period:2,letterDays:['C','F']},
-        {name:'Econ. & Gov.',school:'HS',period:4,letterDays:['A','B','C','D','E','F']},
-        {name:'AP Computer Science Principles',school:'HS',period:6,letterDays:['A','B','C','D','E','F']},
-        {name:'Econ. & Gov.',school:'HS',period:7,letterDays:['A','B','C','D','E','F']},
+        {name:'ELA',school:'HS',grade:12,period:1,letterDays:['A','B','C','D','E','F']},
+        {name:'Econ. & Gov.',school:'HS',grade:12,period:1,letterDays:['A','B','C','D','E','F']},
+        {name:'Photography',school:'HS',grade:12,period:2,letterDays:['B','E']},
+        {name:'Padalino advisory',school:'HS',grade:12,period:2,letterDays:['C','F']},
+        {name:'Carsky advisory',school:'HS',grade:12,period:2,letterDays:['C','F']},
+        {name:'Watson advisory',school:'HS',grade:12,period:2,letterDays:['C','F']},
+        {name:'Econ. & Gov.',school:'HS',grade:12,period:4,letterDays:['A','B','C','D','E','F']},
+        {name:'AP Computer Science Principles',school:'HS',grade:12,period:6,letterDays:['A','B','C','D','E','F']},
+        {name:'Econ. & Gov.',school:'HS',grade:12,period:7,letterDays:['A','B','C','D','E','F']},
         
         //~~~~~MS classes~~~~~//
         // 6th grade classes
-        {name:'Math 6.3',school:'MS',period:1,letterDays:['A','B','C','D','E','F']},
-        {name:'Humanities 6.5',school:'MS',period:1,letterDays:['A','B','C','D','E','F']},
-        {name:'Humanities 6.3',school:'MS',period:1,letterDays:['A','B','C','D','E','F']},
-        {name:'Ford Advisory',school:'MS',period:2,letterDays:['A','C','E']},
-        {name:'Richardson Advisory',school:'MS',period:2,letterDays:['A','C','E']},
-        {name:'Collado Advisory',school:'MS',period:2,letterDays:['A','C','E']},
-        {name:'AIR 6.4',school:'MS',period:2,letterDays:['B','D','F']},
-        {name:'AIR 6.3',school:'MS',period:2,letterDays:['B','D','F']},
-        {name:'AIR 6.2',school:'MS',period:2,letterDays:['B','D','F']},
-        {name:'Math Skills 6.1',school:'MS',period:3,letterDays:['B','D','F']},
-        {name:'Math 6.5',school:'MS',period:3,letterDays:['B','D','F']},
-        {name:'Math 6.5',school:'MS',period:4,letterDays:['A','B','C','D','E','F']},
-        {name:'Humanities 6.3',school:'MS',period:4,letterDays:['A','B','C','D','E','F']},
-        {name:'Humanities 6.4',school:'MS',period:4,letterDays:['A','B','C','D','E','F']},
-        {name:'Math 6.2',school:'MS',period:6,letterDays:['A','B','C','D','E','F']},
+        {name:'Math 6.3',school:'MS',grade:6,period:1,letterDays:['A','B','C','D','E','F']},
+        {name:'Humanities 6.5',school:'MS',grade:6,period:1,letterDays:['A','B','C','D','E','F']},
+        {name:'Humanities 6.3',school:'MS',grade:6,period:1,letterDays:['A','B','C','D','E','F']},
+        {name:'Ford Advisory',school:'MS',grade:6,period:2,letterDays:['A','C','E']},
+        {name:'Richardson Advisory',school:'MS',grade:6,period:2,letterDays:['A','C','E']},
+        {name:'Collado Advisory',school:'MS',grade:6,period:2,letterDays:['A','C','E']},
+        {name:'AIR 6.4',school:'MS',grade:6,period:2,letterDays:['B','D','F']},
+        {name:'AIR 6.3',school:'MS',grade:6,period:2,letterDays:['B','D','F']},
+        {name:'AIR 6.2',school:'MS',grade:6,period:2,letterDays:['B','D','F']},
+        {name:'Math Skills 6.1',school:'MS',grade:6,period:3,letterDays:['B','D','F']},
+        {name:'Math 6.5',school:'MS',grade:6,period:3,letterDays:['B','D','F']},
+        {name:'Math 6.5',school:'MS',grade:6,period:4,letterDays:['A','B','C','D','E','F']},
+        {name:'Humanities 6.3',school:'MS',grade:6,period:4,letterDays:['A','B','C','D','E','F']},
+        {name:'Humanities 6.4',school:'MS',grade:6,period:4,letterDays:['A','B','C','D','E','F']},
+        {name:'Math 6.2',school:'MS',grade:6,period:6,letterDays:['A','B','C','D','E','F']},
         // 7th grade classes
-        {name:'Humanities 7.2',school:'MS',period:1,letterDays:['B','D','F']},
-        {name:'Humanities 7.3',school:'MS',period:1,letterDays:['A','B','C','D','E','F']},
-        {name:'Reinoso advisory',school:'MS',period:2,letterDays:['B','D','F']},
-        {name:'Alvarez advisory',school:'MS',period:2,letterDays:['B','D','F']},
-        {name:'Math 7.4',school:'MS',period:1,letterDays:['A','B','C','D','E','F']},
-        {name:'Math 7.3',school:'MS',period:1,letterDays:['A','B','C','D','E','F']},
-        {name:'Math 7.3',school:'MS',period:3,letterDays:['B','D','F']},
-        {name:'Math skills',school:'MS',period:3,letterDays:['A','C','E']},
-        {name:'Math 7.1',school:'MS',period:4,letterDays:['A','B','C','D','E','F']},
-        {name:'Math 7.2',school:'MS',period:4,letterDays:['A','B','C','D','E','F']},
-        {name:'Humanities 7.4',school:'MS',period:4,letterDays:['A','B','C','D','E','F']},
+        {name:'Humanities 7.2',school:'MS',grade:7,period:1,letterDays:['B','D','F']},
+        {name:'Humanities 7.3',school:'MS',grade:7,period:1,letterDays:['A','B','C','D','E','F']},
+        {name:'Reinoso advisory',school:'MS',grade:7,period:2,letterDays:['B','D','F']},
+        {name:'Alvarez advisory',school:'MS',grade:7,period:2,letterDays:['B','D','F']},
+        {name:'Math 7.4',school:'MS',grade:7,period:1,letterDays:['A','B','C','D','E','F']},
+        {name:'Math 7.3',school:'MS',grade:7,period:1,letterDays:['A','B','C','D','E','F']},
+        {name:'Science 7.3',school:'MS',grade:7,period:3,letterDays:['B','D','F']},
+        {name:'Math 7.3',school:'MS',grade:7,period:3,letterDays:['B','D','F']},
+        {name:'Math skills',school:'MS',grade:7,period:3,letterDays:['A','C','E']},
+        {name:'Math 7.1',school:'MS',grade:7,period:4,letterDays:['A','B','C','D','E','F']},
+        {name:'Math 7.2',school:'MS',grade:7,period:4,letterDays:['A','B','C','D','E','F']},
+        {name:'Humanities 7.4',school:'MS',grade:7,period:4,letterDays:['A','B','C','D','E','F']},
         // 8th grade classes
-        {name:'Humanities 8.1',school:'MS',period:1,letterDays:['A','B','C','D','E','F']},
-        {name:'Suppo Advisory',school:'MS',period:2,letterDays:['A','C','E']},
-        {name:'Baker Advisory',school:'MS',period:2,letterDays:['A','C','E']},
-        {name:'Schoonmaker Advisory',school:'MS',period:2,letterDays:['A','C','E']},
-        {name:'Pagoulatos Advisory',school:'MS',period:2,letterDays:['A','C','E']},
-        {name:'Mindfullness',school:'MS',period:2,letterDays:['B','D','F']},
-        {name:'Science 8.1',school:'MS',period:4,letterDays:['A','B','C','D','E','F']},
-        {name:'Science 8.2',school:'MS',period:4,letterDays:['A','B','C','D','E','F']},
-        {name:'Humanities 8.3',school:'MS',period:4,letterDays:['A','B','C','D','E','F']},
-        {name:'Spanish 1',school:'MS',period:6,letterDays:['C','F']},
-        {name:'Spanish 2',school:'MS',period:6,letterDays:['C','F']},
+        {name:'Humanities 8.1',school:'MS',grade:8,period:1,letterDays:['A','B','C','D','E','F']},
+        {name:'Suppo Advisory',school:'MS',grade:8,period:2,letterDays:['A','C','E']},
+        {name:'Baker Advisory',school:'MS',grade:8,period:2,letterDays:['A','C','E']},
+        {name:'Schoonmaker Advisory',school:'MS',grade:8,period:2,letterDays:['A','C','E']},
+        {name:'Pagoulatos Advisory',school:'MS',grade:8,period:2,letterDays:['A','C','E']},
+        {name:'Mindfullness',school:'MS',grade:8,period:2,letterDays:['B','D','F']},
+        {name:'Science 8.1',school:'MS',grade:8,period:4,letterDays:['A','B','C','D','E','F']},
+        {name:'Science 8.2',school:'MS',grade:8,period:4,letterDays:['A','B','C','D','E','F']},
+        {name:'Humanities 8.3',school:'MS',grade:8,period:4,letterDays:['A','B','C','D','E','F']},
+        {name:'Spanish 1',school:'MS',grade:8,period:6,letterDays:['C','F']},
+        {name:'Spanish 2',school:'MS',grade:8,period:6,letterDays:['C','F']},
+        {name:'Humanities 8.5',school:'MS',grade:8,period:1,letterDays:['A','B','C','D','E','F']},
     ];
 
     const [
@@ -297,15 +301,17 @@ const seed = async () => {
         USHistory_G11P1,
         TechCareers_G11P2,
         LyonsAdvisory_G11P2,
-        Photograph_G11P2,
+        Photography_G11P2,
         USHistory_G11P3,
         ELA_G11P3,
+        MusicProduction_G11P4,
         Painting_G11P4,
         USHistory_G11P7,
         ELA_G11P7,
         // 12th grade classes
+        ELA_G12P1,
         EconGov_G12P1,
-        Photograph_G12P2,
+        Photography_G12P2,
         PadalinoAdvisory_G12P2,
         CarskyAdvisory_G12P2,
         WatsonAdvisory_G12P2,
@@ -331,13 +337,14 @@ const seed = async () => {
         Math62_G6P6,
         // 7th grade classes
         Humanities72_G7P1,
-        Humanities73_G7P1,
+        Humanities73_G7P4,
         ReinosoAdvisory_G7P2,
         AlvarezAdvisory_G7P2,
         Math74_G7P1,
         Math73_G7P1,
+        Science73_G7P3,
         Math73_G7P3,
-        MathSkills_G7P3,
+        MathSkills72_G7P3,
         Math71_G7P4,
         Math72_G7P4,
         Humanities74_G7P4,
@@ -349,14 +356,136 @@ const seed = async () => {
         PagoulatosAdvisory_G8P2,
         Mindfullness_G8P2,
         Science81_G8P4,
-        Science82_G8p4,
+        Science82_G8P4,
         Humanities83_G8P4,
         Spanish1_G8P6,
-        Spanish2_G8P6
+        Spanish2_G8P6,
+        Humanities85_G8P1
     ] = await Promise.all(classesList.map((eachClass) => Class.create(eachClass)));
 
     //-------------create all userClass relationships here-------------//
+    const userClassList = [
+        // Melvin Rosado schedule
+        {userId:MelvinRosado.id,classId:ELA_G12P1.id},
+        {userId:MelvinRosado.id,classId:ELA_G9P3.id},
+        {userId:MelvinRosado.id,classId:RosadoAdvisory_G9P4.id},
+        {userId:MelvinRosado.id,classId:Spanish1_G8P6.id},
 
+        // Jack Padalino schedule
+        {userId:JackPadalino.id,classId:APCSP_G11P1.id},
+        {userId:JackPadalino.id,classId:PadalinoAdvisory_G12P2.id},
+        {userId:JackPadalino.id,classId:IntroCS1_G10P3.id},
+        {userId:JackPadalino.id,classId:APCSP_G12P6.id},
+        {userId:JackPadalino.id,classId:Physics_G9P7.id},
+
+        // Teah Watson schedule
+        {userId:TeahWatson.id,classId:EconGov_G12P1.id},
+        {userId:TeahWatson.id,classId:MusicProduction_G11P4.id},
+        {userId:TeahWatson.id,classId:WatsonAdvisory_G12P2.id},
+        {userId:TeahWatson.id,classId:EconGov_G12P4.id},
+        {userId:TeahWatson.id,classId:EconGov_G12P7.id},
+
+        // James Quinn schedule
+        {userId:JamesQuinn.id,classId:APCSP_G11P1.id},
+        {userId:JamesQuinn.id,classId:TechCareers_G11P2.id},
+        {userId:JamesQuinn.id,classId:IntroCS2_G10P3.id},
+        
+        // Bismarck Oppong schedule
+        {userId:BismarckOppong.id,classId:OppongAdvisory_G9P4.id},
+        {userId:BismarckOppong.id,classId:LivingEnvironment_G10P6.id},
+        {userId:BismarckOppong.id,classId:LivingEnvironment_G10P7.id},
+        {userId:BismarckOppong.id,classId:Science82_G8P4.id},
+
+        // Rosss Chodan schedule
+        {userId:RossChodan.id,classId:ELA_G11P1.id},
+        {userId:RossChodan.id,classId:ELA_G11P3.id},
+        {userId:RossChodan.id,classId:ELA_G11P7.id},
+
+        // Jasmine Carsky schedule
+        {userId:JasmineCarsky.id,classId:USHistory_G11P1.id},
+        {userId:JasmineCarsky.id,classId:CarskyAdvisory_G12P2.id},
+        {userId:JasmineCarsky.id,classId:USHistory_G11P3.id},
+        {userId:JasmineCarsky.id,classId:USHistory_G11P7.id},
+
+        // Kelly Mobley schedule
+        {userId:KellyMobley.id,classId:ELA_G10P2.id},
+        {userId:KellyMobley.id,classId:ELA_G11P7.id},
+
+        // Lisa Lyons schedule
+        {userId:LisaLyons.id,classId:LyonsAdvisory_G11P2.id},
+        {userId:LisaLyons.id,classId:ELA_G9P3.id},
+        {userId:LisaLyons.id,classId:ArtFundamentals_G9P4.id},
+        {userId:LisaLyons.id,classId:ELA_G9P6.id},
+
+        // Michelle Stover schedule
+        {userId:MichelleStover.id,classId:LivingEnvironment_G10P1.id},
+        {userId:MichelleStover.id,classId:Science81_G8P4.id},
+
+        // Asatou Sohna schedule
+        {userId:AsatouSohna.id,classId:GlobalHistory_G9P1.id},
+        {userId:AsatouSohna.id,classId:Photography_G12P2.id},
+        {userId:AsatouSohna.id,classId:Photography_G11P2.id},
+        {userId:AsatouSohna.id,classId:SohnaAdvisory_G10P3.id},
+        {userId:AsatouSohna.id,classId:Painting_G10P4.id},
+        {userId:AsatouSohna.id,classId:Painting_G11P4.id},
+        {userId:AsatouSohna.id,classId:GlobalHistory_G9P7.id},
+
+        // Chaka Baker schedule
+        {userId:ChakaBaker.id,classId:Math73_G7P1.id},
+        {userId:ChakaBaker.id,classId:BakerAdvisory_G8P2.id},
+        {userId:ChakaBaker.id,classId:MathSkills61_G6P3.id},
+        {userId:ChakaBaker.id,classId:Math71_G7P4.id},
+
+        // Joe Suppo schedule
+        {userId:JoeSuppo.id,classId:Humanities81_G8P1.id},
+        {userId:JoeSuppo.id,classId:SuppoAdvisory_G8P2.id},
+        {userId:JoeSuppo.id,classId:AIR64_G6P2.id},
+        {userId:JoeSuppo.id,classId:Humanities83_G8P4.id},
+        
+        // Matthew Schoonmaker schedule
+        {userId:MattSchoonmaker.id,classId:Math74_G7P1.id},
+        {userId:MattSchoonmaker.id,classId:SchoonmakerAdvisory_G8P2.id},
+        {userId:MattSchoonmaker.id,classId:Science73_G7P3.id},
+        {userId:MattSchoonmaker.id,classId:Math72_G7P4.id},
+
+        // Chikudi Richardson schedule
+        {userId:ChikudiRichardson.id,classId:Math73_G7P1.id},
+        {userId:ChikudiRichardson.id,classId:RichardsonAdvisory_G6P2.id},
+        {userId:ChikudiRichardson.id,classId:Math65_G6P3.id},
+        {userId:ChikudiRichardson.id,classId:Math65_G6P4.id},
+
+        // Shira Collado schedule
+        {userId:ShiraCollado.id,classId:Humanities72_G7P1.id},
+        {userId:ShiraCollado.id,classId:ColladoAdvisory_G6P2.id},
+        {userId:ShiraCollado.id,classId:AIR63_G6P2.id},
+        {userId:ShiraCollado.id,classId:Humanities73_G7P4.id},
+
+        // Virginia Ford schedule
+        {userId:VirginiaFord.id,classId:AIR62_G6P2.id},
+        {userId:VirginiaFord.id,classId:FordAdvisory_G6P2.id},
+        {userId:VirginiaFord.id,classId:Humanities63_G6P4.id},
+
+        // Rita Reinoso schedule
+        {userId:RitaReinoso.id,classId:Humanities85_G8P1.id},
+        {userId:RitaReinoso.id,classId:ReinosoAdvisory_G7P2.id},
+        {userId:RitaReinoso.id,classId:Humanities64_G6P4.id},
+        {userId:RitaReinoso.id,classId:Spanish2_G8P6.id},
+
+        // Lena Pagoulatos schedule
+        {userId:LenaPagoulatos.id,classId:Humanities65_G6P1.id},
+        {userId:LenaPagoulatos.id,classId:PagoulatosAdvisory_G8P2.id},
+        {userId:LenaPagoulatos.id,classId:Mindfullness_G8P2.id},
+        {userId:LenaPagoulatos.id,classId:Humanities74_G7P4.id},
+
+        // Melissa Alvarez schedule
+        {userId:MelissaAlvarez.id,classId:Math63_G6P1.id},
+        {userId:MelissaAlvarez.id,classId:AlvarezAdvisory_G7P2.id},
+        {userId:MelissaAlvarez.id,classId:MathSkills72_G7P3.id},
+        {userId:MelissaAlvarez.id,classId:Math62_G6P6.id},
+        
+    ];
+
+    await Promise.all(userClassList.map((userClass) => UserClass.create(userClass)));
 
     //-------------create all days here-------------//
     const dayList = [
