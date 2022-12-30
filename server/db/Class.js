@@ -16,6 +16,14 @@ const Class = db.define("class", {
     allowNull:false,
     values:['MS','HS']
   },
+  grade:{
+    type:Sequelize.INTEGER,
+    validate:{
+      min:6,
+      max:12
+    },
+    allowNull:false,
+  },
   period:{
     type:Sequelize.INTEGER,
     validate:{
