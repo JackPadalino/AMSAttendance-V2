@@ -10,14 +10,7 @@ const Class = db.define("class", {
   name: {
     type: Sequelize.STRING
   },
-  grade:{
-    type:Sequelize.INTEGER,
-    validate:{
-      min:6,
-      max:12
-    },
-    allowNull:false
-  },
+  // will need to add identifier code eventually
   school:{
     type:Sequelize.ENUM,
     allowNull:false,
@@ -31,32 +24,40 @@ const Class = db.define("class", {
     },
     allowNull:false,
   },
-  startTime:{
-    type:Sequelize.INTEGER,
-    allowNull:false,
-    validate:{
-      isInt:true,
-      min:600,
-      max:1800
-    }
-  },
-  endTime:{
-    type:Sequelize.INTEGER,
-    allowNull:false,
-    validate:{
-      isInt:true,
-      min:600,
-      max:1800
-    }
-  },
   letterDays:{
     type:Sequelize.ARRAY(Sequelize.CHAR),
     allowNull:false
   },
-  isFreePeriod:{
-    type:Sequelize.BOOLEAN,
-    defaultValue:false
-  }
+  // grade:{
+  //   type:Sequelize.INTEGER,
+  //   validate:{
+  //     min:6,
+  //     max:12
+  //   },
+  //   allowNull:false
+  // },
+  // isFreePeriod:{
+  //   type:Sequelize.BOOLEAN,
+  //   defaultValue:false
+  // },
+  // startTime:{
+  //   type:Sequelize.INTEGER,
+  //   allowNull:false,
+  //   validate:{
+  //     isInt:true,
+  //     min:600,
+  //     max:1800
+  //   }
+  // },
+  // endTime:{
+  //   type:Sequelize.INTEGER,
+  //   allowNull:false,
+  //   validate:{
+  //     isInt:true,
+  //     min:600,
+  //     max:1800
+  //   }
+  // },
 });
 
 module.exports = Class;
