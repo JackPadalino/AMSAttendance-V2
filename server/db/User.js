@@ -24,15 +24,6 @@ const User = db.define("user", {
     },
     allowNull: false,
   },
-  email: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      isEmail: true,
-      notEmpty:true
-    },
-    unique: true,
-  },
   phoneNumber: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -40,14 +31,6 @@ const User = db.define("user", {
       notEmpty: true,
     },
     unique: true
-  },
-  absent: {
-    type: Sequelize.INTEGER,
-    defaultValue:0
-  },
-  covered: {
-    type: Sequelize.INTEGER,
-    defaultValue:0
   },
   username: {
     type: Sequelize.STRING,
@@ -73,6 +56,23 @@ const User = db.define("user", {
     values:['teacher','admin'],
     defaultValue:'teacher'
   }
+  // email: {
+  //   type: Sequelize.STRING,
+  //   allowNull: false,
+  //   validate: {
+  //     isEmail: true,
+  //     notEmpty:true
+  //   },
+  //   unique: true,
+  // },
+  // absent: {
+  //   type: Sequelize.INTEGER,
+  //   defaultValue:0
+  // },
+  // covered: {
+  //   type: Sequelize.INTEGER,
+  //   defaultValue:0
+  // },
 });
 
 User.addHook("beforeSave", async (user) => {
