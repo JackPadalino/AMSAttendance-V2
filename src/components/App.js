@@ -4,6 +4,7 @@ import axios from "axios";
 import { Navbar, RouterComponent } from "./";
 import { setUser } from "../store/userSlice";
 import { setAllClasses } from "../store/classSlice";
+import { setAllUsers } from "../store/userSlice";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -23,14 +24,20 @@ const App = () => {
     }
   };
 
-  const fetchClasses = async()=>{
-    const response = await axios.get('/api/classes');
-    dispatch(setAllClasses(response.data));
+  // const fetchClasses = async()=>{
+  //   const response = await axios.get('/api/classes');
+  //   dispatch(setAllClasses(response.data));
+  // };
+
+  const fetchUsers = async()=>{
+    const response = await axios.get('/api/users');
+    dispatch(setAllUsers(response.data));
   };
 
   useEffect(() => {
     checkForUser();
-    fetchClasses();
+    //fetchClasses();
+    fetchUsers();
   }, []);
 
   return (
