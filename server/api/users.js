@@ -3,16 +3,6 @@ const router = express.Router();
 const sequelize = require("sequelize");
 const { User,Class,Absence,Message,Day,Coverage } = require("../db");
 
-// GET localhost:3000/api/users
-router.get('/',async(req, res, next) => {
-    try {
-        const users = await User.findAll();
-        res.send(users);
-    }catch(error){
-        next(error);
-    };
-});
-
 // GET localhost:3000/api/users/userId
 router.get('/:userId',async(req, res, next) => {
     try {
@@ -26,7 +16,7 @@ router.get('/:userId',async(req, res, next) => {
 });
 
 // GET localhost:3000/api/users
-router.get('/Id',async(req, res, next) => {
+router.get('/',async(req, res, next) => {
     try {
         const users = await User.findAll();
         res.send(users);
