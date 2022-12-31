@@ -6,52 +6,46 @@ import { Link } from 'react-router-dom';
 import { NotFoundPage } from ".";
 
 const SingleClass = () => {
-    const { classId } = useParams();
-    const { date,allAbsences } = useSelector((state) => state.admin);
-    const [day,setDay] = useState({});
-    const [coverages,setCoverages] = useState([]);
-    const [thisClass,setThisClass] = useState({});
+    const { school,period,letter } = useParams();
+    const { allUsers } = useSelector((state) => state.user);
+    const { allAbsentUsers } = useSelector((state) => state.admin);
     const [availableTeachers,setAvailableTeachers] = useState([]);
 
-    const fetchData = async()=>{
-        const day = await axios.get(`/api/day/${date}`);
-        setDay(day.data);
-        const classInfo = await axios.get(`/api/classes/${classId}`);
-        setThisClass(classInfo.data);
-        const freePeriod = await axios.get(`/api/classes/coverages/${classInfo.data.period}`);
-        setAvailableTeachers(freePeriod.data.users);
-    };
-
-    const updateCoverage =()=>{
-        console.log('Button clicked!');
-    };
-    
-    const updateCoverageArray = (event) =>{
-        console.log('Checkbox checked!');
-    };
+    const fetchData = async() => {
+        // fetching an array of all classes happening at this time
+        // making an array of all unavailable teachers from the classes going on at this time
+        // combining unavailable teachers with absent teachers
+        const classes = await axios.get(`/api/classes/${school}/${period}/${letter}`);
+        const unAvailableUsers = classes.data.flatMap(eachClass => eachClass.users);
+        const allUnAvailableUsers = [...allAbsentUsers,...unAvailableUsers];
+        // making an array of all unique unavailable teacher ids
+        // comparing the two user id arrays and making a final array of available user ids
+        // we needed to make an array of ids so that we could filter out teachers who are not
+        // available --> was not working when trying to directly filter entire teacher objects
+        // this is because all objects are unique in memory even if key/value pairs are same
+        // fetching all available teachers from their ids
+        const allUserIds = allUsers.map((user)=>user.id);
+        const allUnAvailableUserIds = allUnAvailableUsers.map((user)=>user.id);
+        const availableUserIds = allUserIds.filter(id => !allUnAvailableUserIds.includes(id)); 
+        const userPromises = availableUserIds.map(id => axios.get(`/api/users/${id}`));
+        const userResponses = await Promise.all(userPromises);
+        setAvailableTeachers(userResponses.map(response => response.data));
+      };
 
     useEffect(() => {
         fetchData();
     }, []);
 
-    /**
-     * Checking the box adds a teacher to an array of potential coverages
-     * Un-checking a box removes a teacher from the array of potential coverages
-     * After hitting submit, a new coverage is created in the db for each teacher checked off 
-    */
-
-    if(!Object.keys(thisClass).length) return <NotFoundPage/>;
     return (
         <div>
-            <h1>{thisClass.name} P{thisClass.period} {date}</h1>
+            <h3>Available teachers</h3>
             <ul>
             {availableTeachers.map((teacher) => {
                 return (
-                    <li key={teacher.id}>{teacher.firstName} {teacher.lastName} <input value={teacher.id} type="checkbox" onChange={updateCoverageArray}/></li>
+                    <li key={teacher.id}>{teacher.firstName} {teacher.lastName}</li>
                 )
             })}
             </ul>
-            <button onClick={updateCoverage}>Update coverage</button>
         </div>
     );
 };
