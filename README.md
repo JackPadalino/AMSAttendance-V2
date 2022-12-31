@@ -10,9 +10,9 @@ Express JS app to automate teacher attendance and staff covereages.
 
 ### Next steps
 - *TRIPLE check absent teacher classes and available teachers!*
-- Fix drop down on AdminAbsences for absent teacher selection --> not persisting after leaving page
 - Give all teachers a 'Lunch class' to make the unavailable during lunch periods!
 - Update API route and SingleClass component to look for co-teachers first - if co-teacher is present, state that and provide other available teachers
+- Fix drop down on AdminAbsences for absent teacher selection --> not persisting after leaving page
 - Add forms to add new teachers, classes, and assign classes to teachers
 - Update teacher schedule to add/remove classes
 - Update classes to change name, period, school, letter days
