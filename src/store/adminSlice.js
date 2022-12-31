@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     date:'',
     letterDay:'',
-    allAbsences: [],
+    allAbsentUsers: [],
     coveredClasses:[]
 };
 
@@ -20,8 +20,8 @@ export const adminSlice = createSlice({
     setDay: (state, action) => {
         state.day = action.payload;
     },
-    setAllAbsences: (state, action) => {
-      state.allAbsences = action.payload;
+    setAllAbsentUsers: (state, action) => {
+      state.allAbsentUsers = action.payload;
     },
     setCoveredClasses: (state, action) => {
       state.coveredClasses = action.payload;
@@ -36,7 +36,7 @@ export const {
     setDate,
     setLetterDay,
     setDay,
-    setAllAbsences,
+    setAllAbsentUsers,
     setCoveredClasses,
     resetCoveredClasses
 } = adminSlice.actions;
