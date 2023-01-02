@@ -5,7 +5,6 @@ const { User,Class,Absence,Message,Day,Coverage } = require("../db");
 
 // GET localhost:3000/api/users/userId
 router.get('/:userId',async(req, res, next) => {
-<<<<<<< HEAD
     try {
         const user = await User.findByPk(req.params.userId,{
             include:[Class]
@@ -43,8 +42,6 @@ router.get('/',async(req, res, next) => {
 
 // GET localhost:3000/api/users
 router.post('/',async(req, res, next) => {
-=======
->>>>>>> 81e00582353751fb1c1e8dca3f4752b74b2c7f2a
     try {
         const newUser = await User.create(req.body);
         res.sendStatus(200);
@@ -53,14 +50,9 @@ router.post('/',async(req, res, next) => {
     };
 });
 
-<<<<<<< HEAD
 // PUT localhost:3000/api/classes/:classId
 router.put('/:userId',async(req, res, next) => {
     const notFoundMessage = 'The object you are trying to update does not exist!';
-=======
-// GET localhost:3000/api/users
-router.get('/',async(req, res, next) => {
->>>>>>> 81e00582353751fb1c1e8dca3f4752b74b2c7f2a
     try {
         const data = {
             firstName:req.body.firstName,
