@@ -6,7 +6,7 @@ const { User,Class,UserClass } = require("../db");
 // GET localhost:3000/api/classes/:school/:period/:letter
 router.get('/:school/:period/:letter',async(req, res, next) => {
     try {
-        const [school,period,letter] = [req.params.school,req.params.period,req.params.letter];
+        const [school,period,letter] = [req.params.school,Number(req.params.period),req.params.letter];
         let classes;
         if(school==='HS'){
             classes = await Class.findAll({
@@ -87,6 +87,49 @@ router.get('/:classId',async(req, res, next) => {
         });
         res.send(classInfo);
     }catch(error){
+        next(error);
+    };
+});
+
+// GET localhost:3000/api/classes/
+router.get('/',async(req, res, next) => {
+    try {
+        const classes = await Class.findAll();
+        res.send(classes);
+    }catch(error){
+        next(error);
+    };
+});
+
+// GET localhost:3000/api/classes/
+router.post('/',async(req, res, next) => {
+    try {
+        const newClass = await Class.create(req.body);
+        res.sendStatus(200);
+    }catch(error){
+        next(error);
+    };
+});
+
+// PUT localhost:3000/api/classes/:classId
+router.put('/:classId',async(req, res, next) => {
+    const notFoundMessage = 'The object you are trying to update does not exist!';
+    try {
+        const data = {
+            name:req.body.name,
+            school:req.body.school,
+            grade:req.body.grade,
+            period:req.body.period,
+            letterDays:req.body.letterDays
+          };
+        const classToUpdate = await Class.findByPk(req.params.classId);
+        if(!classToUpdate) throw new Error(notFoundMessage);
+        await classToUpdate.update(data);
+        res.sendStatus(200);
+    }catch(error){
+        if(error.message===notFoundMessage){
+            return res.status(404).send({message:notFoundMessage});
+        }
         next(error);
     };
 });
