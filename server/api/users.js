@@ -5,6 +5,7 @@ const { User,Class,Absence,Message,Day,Coverage } = require("../db");
 
 // GET localhost:3000/api/users/userId
 router.get('/:userId',async(req, res, next) => {
+<<<<<<< HEAD
     try {
         const user = await User.findByPk(req.params.userId,{
             include:[Class]
@@ -18,9 +19,62 @@ router.get('/:userId',async(req, res, next) => {
 // GET localhost:3000/api/users
 router.get('/',async(req, res, next) => {
     try {
-        const users = await User.findAll();
+        const users = await User.findAll({
+            order:[
+                ['lastName','ASC']
+            ]
+        });
         res.send(users);
     }catch(error){
+        next(error);
+    };
+});
+
+// // GET localhost:3000/api/users
+// router.get('/Id',async(req, res, next) => {
+//     try {
+//         const users = await User.findAll();
+//         res.send(users);
+//     }catch(error){
+//         next(error);
+//     };
+// });
+
+
+// GET localhost:3000/api/users
+router.post('/',async(req, res, next) => {
+=======
+>>>>>>> 81e00582353751fb1c1e8dca3f4752b74b2c7f2a
+    try {
+        const newUser = await User.create(req.body);
+        res.sendStatus(200);
+    }catch(error){
+        next(error);
+    };
+});
+
+<<<<<<< HEAD
+// PUT localhost:3000/api/classes/:classId
+router.put('/:userId',async(req, res, next) => {
+    const notFoundMessage = 'The object you are trying to update does not exist!';
+=======
+// GET localhost:3000/api/users
+router.get('/',async(req, res, next) => {
+>>>>>>> 81e00582353751fb1c1e8dca3f4752b74b2c7f2a
+    try {
+        const data = {
+            firstName:req.body.firstName,
+            lastName:req.body.lastName,
+            phoneNumber:req.body.phoneNumber
+          };
+        const userToUpdate = await User.findByPk(req.params.userId);
+        if(!userToUpdate) throw new Error(notFoundMessage);
+        await userToUpdate.update(data);
+        res.sendStatus(200);
+    }catch(error){
+        if(error.message===notFoundMessage){
+            return res.status(404).send({message:notFoundMessage});
+        }
         next(error);
     };
 });

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import { Navbar, RouterComponent } from "./";
-import { setUser } from "../store/userSlice";
+import { setUser,setAllUsers } from "../store/userSlice";
 import { setAllClasses } from "../store/classSlice";
 import { setAllUsers } from "../store/userSlice";
 
@@ -36,7 +36,7 @@ const App = () => {
 
   useEffect(() => {
     checkForUser();
-    //fetchClasses();
+    fetchClasses();
     fetchUsers();
   }, []);
 

@@ -4,11 +4,10 @@ import { useSelector } from "react-redux";
 import {
   Home,
   Login,
-  AdminAbsences,
-  AdminAddTeacher,
-  AdminAddClass,
-  SingleClass,
-  NotFoundPage
+  Absences,
+  Teachers,
+  Classes,
+  SingleClass
 } from ".";
 
 const RouterComponent = () => {
@@ -17,11 +16,10 @@ const RouterComponent = () => {
     <Routes>
       <Route exact path="/" element={<Home />} />
       <Route exact path="/login" element={<Login />} />
-      <Route exact path="/admin/absences" element={<AdminAbsences />} />
-      <Route exact path="/admin/coverages/:school/:period/:letter" element={<SingleClass />}/>
-      <Route exact path="/admin/add-teacher" element={<AdminAddTeacher />} />
-      <Route exact path="/admin/add-class" element={<AdminAddClass />} />
-      <Route exact path="*" element={<NotFoundPage />} />
+      <Route exact path="/admin/absences" element={<Absences />} />
+      <Route exact path="/admin/add-teacher" element={<Teachers />} />
+      <Route exact path="/admin/add-class" element={<Classes />} />
+      <Route exact path="/coverages/:dateStr/:classId" element={<SingleClass />} />
     </Routes>
   );
 };
