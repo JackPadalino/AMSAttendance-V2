@@ -18,7 +18,11 @@ router.get('/:userId',async(req, res, next) => {
 // GET localhost:3000/api/users
 router.get('/',async(req, res, next) => {
     try {
-        const users = await User.findAll();
+        const users = await User.findAll({
+            order:[
+                ['lastName','ASC']
+            ]
+        });
         res.send(users);
     }catch(error){
         next(error);
@@ -36,7 +40,7 @@ router.get('/',async(req, res, next) => {
 // });
 
 
-// GET localhost:3000/api/classes/
+// GET localhost:3000/api/users
 router.post('/',async(req, res, next) => {
     try {
         const newUser = await User.create(req.body);
