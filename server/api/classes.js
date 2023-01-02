@@ -6,7 +6,7 @@ const { User,Class,UserClass } = require("../db");
 // GET localhost:3000/api/classes/:school/:period/:letter
 router.get('/:school/:period/:letter',async(req, res, next) => {
     try {
-        const [school,period,letter] = [req.params.school,req.params.period,req.params.letter];
+        const [school,period,letter] = [req.params.school,Number(req.params.period),req.params.letter];
         let classes;
         if(school==='HS'){
             classes = await Class.findAll({

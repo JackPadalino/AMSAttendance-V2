@@ -13,7 +13,6 @@ const Class = db.define("class", {
   // will need to add identifier code eventually
   school:{
     type:Sequelize.ENUM,
-    allowNull:false,
     values:['MS','HS']
   },
   grade:{
@@ -21,8 +20,7 @@ const Class = db.define("class", {
     validate:{
       min:6,
       max:12
-    },
-    allowNull:false,
+    }
   },
   period:{
     type:Sequelize.INTEGER,
@@ -33,7 +31,7 @@ const Class = db.define("class", {
     allowNull:false,
   },
   letterDays:{
-    type:Sequelize.ARRAY(Sequelize.CHAR),
+    type:Sequelize.ARRAY(Sequelize.STRING),
     allowNull:false
   },
   // grade:{
