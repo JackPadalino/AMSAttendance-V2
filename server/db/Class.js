@@ -31,7 +31,7 @@ const Class = db.define("class", {
     allowNull:false,
   },
   letterDays:{
-    type:Sequelize.ARRAY(Sequelize.CHAR),
+    type:Sequelize.ARRAY(Sequelize.STRING),
     allowNull:false
   },
   // grade:{
