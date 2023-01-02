@@ -109,7 +109,7 @@ const seed = async () => {
         },
         {
             firstName: 'Shira',
-            lastName: 'Collada',
+            lastName: 'Collado',
             email: 'S.Collado@gmail.com',
             phoneNumber: '+15248333615'
         },
