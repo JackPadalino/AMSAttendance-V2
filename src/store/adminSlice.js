@@ -25,10 +25,7 @@ export const adminSlice = createSlice({
     },
     setCoveredClasses: (state, action) => {
       state.coveredClasses = action.payload;
-    },
-    resetCoveredClasses: (state, action) => {
-      state.coveredClasses = initialState.coveredClasses;
-    },
+    }
   },
 });
 
@@ -37,8 +34,7 @@ export const {
     setLetterDay,
     setDay,
     setAllAbsentUsers,
-    setCoveredClasses,
-    resetCoveredClasses
+    setCoveredClasses
 } = adminSlice.actions;
 
 export default adminSlice.reducer;

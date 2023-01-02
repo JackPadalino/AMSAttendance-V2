@@ -2,14 +2,13 @@ import axios from 'axios';
 import React, { useState,useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { NotFoundPage } from ".";
-import { setDate,setLetterDay,setDay,setAllAbsentUsers,setCoveredClasses,resetCoveredClasses } from "../store/adminSlice";
+import { setDate,setLetterDay,setAllAbsentUsers,setCoveredClasses } from "../store/adminSlice";
 import { useSelector, useDispatch } from "react-redux";
 
 const AdminAbsences = () => {
     const dispatch = useDispatch();
-    const { date,letterDay,day,coveredClasses,allAbsentUsers } = useSelector((state) => state.admin);
+    const { date,letterDay,coveredClasses } = useSelector((state) => state.admin);
     const [token, setToken] = useState(window.localStorage.getItem("token"));
-    const [teacherId,setTeacherId] = useState(0);
 
     const handleDateChange = (event) => {
         const newDate = event.target.value;
@@ -21,25 +20,23 @@ const AdminAbsences = () => {
         dispatch(setLetterDay(newLetterDay));
     };
 
-    const handleTeacherChange = (event) =>{
-        const newTeacherId = event.target.value;
-        setTeacherId(newTeacherId);
-    };
-
     const getAbsences = async(event) =>{
         event.preventDefault();
         const absences = await axios.get(`/api/attendance/absences/${date}`);
         const userPromises = absences.data.map(absence => axios.get(`/api/users/${absence.user.id}`));
         const userResponses = await Promise.all(userPromises);
         const userAbsences = userResponses.map(response => response.data);
-        dispatch(setAllAbsentUsers(userAbsences));
-        dispatch(resetCoveredClasses());
-    };
-
-    const getClasses = async(event) =>{
-        event.preventDefault();
-        const classes = await axios.get(`/api/classes/${teacherId}/${letterDay}`);
-        dispatch(setCoveredClasses(classes.data));
+        const filteredClasses = userAbsences.map(eachUser => {
+            const newObj = {user: eachUser, classes: []};
+            eachUser.classes.forEach(eachClass => {
+              if (eachClass.letterDays.includes(letterDay)) {
+                newObj.classes.push(eachClass);
+              }
+            });
+            return newObj;
+          });
+        dispatch(setCoveredClasses(filteredClasses));
+        dispatch(setAllAbsentUsers(userAbsences)); // setting the global list of absent users in Redux store
     };
 
     if(!token) return <NotFoundPage/>
@@ -49,29 +46,6 @@ const AdminAbsences = () => {
             <form onSubmit={getAbsences}>
                 <label htmlFor="date">Date</label>
                 <input type="date" id="date" value={date} onChange={handleDateChange}></input>
-                <input type='submit' value='Submit'/>
-            </form>
-            <div>
-                {allAbsentUsers.length>0 && allAbsentUsers.map((user) => {
-                    return (
-                        <div key={user.id}>
-                            <p>{user.firstName} {user.lastName}</p>
-                        </div>  
-                    );
-                })}
-                {allAbsentUsers.length===0 && <p>Looks like there is no information about this date.</p>}
-            </div>
-            <h3>Needed coverages</h3>
-            <form onSubmit={getClasses}>
-                <label htmlFor="teacher">Teacher</label>
-                <select name="teacher" id="teacher" onChange={handleTeacherChange}>
-                    <option value="-">-</option>
-                    {allAbsentUsers.map((teacher) => {
-                        return (
-                            <option key={teacher.id} value={teacher.id}>{teacher.firstName} {teacher.lastName}</option>
-                        );
-                    })}
-                </select>
                 <label htmlFor="letter day">Letter day</label>
                 <select name="letter day" id="letter day" value={letterDay} onChange={handleLetterDayChange}>
                     <option value="-">-</option>
@@ -85,11 +59,17 @@ const AdminAbsences = () => {
                 <input type='submit' value='Submit'/>
             </form>
             <div>
-                {coveredClasses.map((eachClass) => {
+                {coveredClasses.map((userObj) => {
                     return (
-                        <div key={eachClass.id}>
-                            {/* <p>{eachClass.name}</p> */}
-                            <Link to={`/admin/coverages/${eachClass.school}/${eachClass.period}/${letterDay}`}>{eachClass.name} - {eachClass.period}</Link>
+                        <div key={userObj.user.id}>
+                            <p>{userObj.user.firstName} {userObj.user.lastName}</p>
+                            <ul>
+                                {userObj.classes.map((eachClass) =>{
+                                    return (
+                                        <li key={eachClass.id}><Link to={`/admin/coverages/${eachClass.school}/${eachClass.period}/${letterDay}`}>{eachClass.name} - {eachClass.period}</Link></li>
+                                    )
+                                })}
+                            </ul>
                         </div>  
                     );
                 })}
