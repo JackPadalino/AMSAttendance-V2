@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import { Navbar, RouterComponent } from "./";
-import { setUser } from "../store/userSlice";
+import { setUser,setAllUsers } from "../store/userSlice";
 import { setAllClasses } from "../store/classSlice";
 
 const App = () => {
@@ -28,9 +28,15 @@ const App = () => {
     dispatch(setAllClasses(response.data));
   };
 
+  const fetchUsers = async()=>{
+    const response = await axios.get('/api/users');
+    dispatch(setAllUsers(response.data));
+  };
+
   useEffect(() => {
     checkForUser();
     fetchClasses();
+    fetchUsers();
   }, []);
 
   return (
