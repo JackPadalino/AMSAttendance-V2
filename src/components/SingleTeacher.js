@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { useState,useEffect } from 'react';
-import { Link,useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { NotFoundPage } from ".";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setAllUsers } from "../store/userSlice";
 
 const SingleTeacher = () => {

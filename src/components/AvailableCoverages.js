@@ -1,12 +1,12 @@
 import axios from 'axios';
 import React, { useState,useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import { NotFoundPage } from ".";
 
 const AvailableCoverages = () => {
     const { school,period,letter } = useParams();
+    const [token, setToken] = useState(window.localStorage.getItem("token"));
     const { allUsers } = useSelector((state) => state.user);
     const { allAbsentUsers } = useSelector((state) => state.absence);
     const [availableTeachers,setAvailableTeachers] = useState([]);
@@ -36,6 +36,7 @@ const AvailableCoverages = () => {
         fetchData();
     }, []);
 
+    if(!token) return <NotFoundPage/>
     return (
         <div>
             <h3>Available teachers</h3>
