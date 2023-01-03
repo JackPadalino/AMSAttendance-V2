@@ -52,7 +52,7 @@ const Teachers = () => {
                 {allUsers.map((user) => {
                     return (
                         <div key={user.id}>
-                            <p>{user.firstName} {user.lastName}</p>
+                            <Link to={`/teachers/${user.id}`}>{user.firstName} {user.lastName}</Link>
                         </div>  
                     );
                 })}

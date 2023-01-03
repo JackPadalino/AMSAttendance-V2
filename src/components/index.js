@@ -5,5 +5,6 @@ export { default as Home } from './Home';
 export { default as Login } from './Login';
 export { default as Absences } from './Absences';
 export { default as Teachers } from './Teachers';
+export { default as SingleTeacher } from './SingleTeacher';
 export { default as Classes } from './Classes';
 export { default as AvailableCoverages } from './AvailableCoverages';
