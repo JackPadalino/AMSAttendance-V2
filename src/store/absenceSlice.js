@@ -7,8 +7,8 @@ const initialState = {
     coveredClasses:[]
 };
 
-export const adminSlice = createSlice({
-  name: "admin",
+export const absenceSlice = createSlice({
+  name: "absence",
   initialState,
   reducers: {
     setDate: (state, action) => {
@@ -16,9 +16,6 @@ export const adminSlice = createSlice({
     },
     setLetterDay: (state, action) => {
       state.letterDay = action.payload;
-  },
-    setDay: (state, action) => {
-        state.day = action.payload;
     },
     setAllAbsentUsers: (state, action) => {
       state.allAbsentUsers = action.payload;
@@ -32,9 +29,8 @@ export const adminSlice = createSlice({
 export const {
     setDate,
     setLetterDay,
-    setDay,
     setAllAbsentUsers,
     setCoveredClasses
-} = adminSlice.actions;
+} = absenceSlice.actions;
 
-export default adminSlice.reducer;
+export default absenceSlice.reducer;

@@ -2,12 +2,12 @@ import axios from 'axios';
 import React, { useState,useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { NotFoundPage } from ".";
-import { setDate,setLetterDay,setAllAbsentUsers,setCoveredClasses } from "../store/adminSlice";
+import { setDate,setLetterDay,setAllAbsentUsers,setCoveredClasses } from "../store/absenceSlice";
 import { useSelector, useDispatch } from "react-redux";
 
 const Absences = () => {
     const dispatch = useDispatch();
-    const { date,letterDay,coveredClasses } = useSelector((state) => state.admin);
+    const { date,letterDay,coveredClasses } = useSelector((state) => state.absence);
     const [token, setToken] = useState(window.localStorage.getItem("token"));
 
     const handleDateChange = (event) => {
