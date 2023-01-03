@@ -5,10 +5,10 @@ import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { NotFoundPage } from ".";
 
-const SingleClass = () => {
+const AvailableCoverages = () => {
     const { school,period,letter } = useParams();
     const { allUsers } = useSelector((state) => state.user);
-    const { allAbsentUsers } = useSelector((state) => state.admin);
+    const { allAbsentUsers } = useSelector((state) => state.absence);
     const [availableTeachers,setAvailableTeachers] = useState([]);
 
     const fetchData = async() => {
@@ -50,4 +50,4 @@ const SingleClass = () => {
     );
 };
 
-export default SingleClass;
+export default AvailableCoverages;

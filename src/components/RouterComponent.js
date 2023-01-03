@@ -7,7 +7,8 @@ import {
   Absences,
   Teachers,
   Classes,
-  SingleClass
+  AvailableCoverages,
+  //SingleTeacher
 } from ".";
 
 const RouterComponent = () => {
@@ -19,7 +20,7 @@ const RouterComponent = () => {
       <Route exact path="/admin/absences" element={<Absences />} />
       <Route exact path="/admin/add-teacher" element={<Teachers />} />
       <Route exact path="/admin/add-class" element={<Classes />} />
-      <Route exact path="/coverages/:dateStr/:classId" element={<SingleClass />} />
+      <Route exact path="/coverages/:school/:period/:letter" element={<AvailableCoverages />} />
     </Routes>
   );
 };

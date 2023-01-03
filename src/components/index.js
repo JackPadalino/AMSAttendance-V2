@@ -6,4 +6,4 @@ export { default as Login } from './Login';
 export { default as Absences } from './Absences';
 export { default as Teachers } from './Teachers';
 export { default as Classes } from './Classes';
-export { default as SingleClass } from './SingleClass';
+export { default as AvailableCoverages } from './AvailableCoverages';
