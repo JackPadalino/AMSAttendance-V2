@@ -21,18 +21,7 @@ export const userSlice = createSlice({
     },
     addNewUser: (state, action) => {
       state.allUsers.push(action.payload);
-    },
-    setSelectedUser: (state, action) => {
-      state.selectedUser = action.payload;
-    },
-    updateSelectedUser: (state, action) => {
-      const updatedSelectedUser = action.payload;
-      const oldSelectedUser = state.selectedUser;
-      state.campus = {
-          ...oldSelectedUser,
-          ...updatedSelectedUser
-      };
-    },
+    }
   }
 });
 
@@ -40,9 +29,7 @@ export const {
   setUser,
   resetUser,
   setAllUsers,
-  addNewUser,
-  setSelectedUser,
-  updateSelectedUser
+  addNewUser
 } = userSlice.actions;
 
 export default userSlice.reducer;
