@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { NotFoundPage } from ".";
 import { setAllUsers,addNewUser } from "../store/userSlice";
@@ -52,7 +52,7 @@ const Teachers = () => {
                 {allUsers.map((user) => {
                     return (
                         <div key={user.id}>
-                            <p>{user.firstName} {user.lastName}</p>
+                            <Link to={`/teachers/${user.id}`}>{user.firstName} {user.lastName}</Link>
                         </div>  
                     );
                 })}

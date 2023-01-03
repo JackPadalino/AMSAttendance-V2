@@ -18,9 +18,9 @@ const Navbar = () => {
     <div>
         <Link to="/">Home</Link>
         {!user.id && <Link to="/login">Login</Link>}
-        {user.id && <Link to="/admin/absences">Absences</Link>}
-        {user.id && <Link to="/admin/add-teacher">Teachers</Link>}
-        {user.id && <Link to="/admin/add-class">Classes</Link>}
+        {user.id && <Link to="/absences">Absences</Link>}
+        {user.id && <Link to="/teachers">Teachers</Link>}
+        {user.id && <Link to="/classes">Classes</Link>}
         {user.id && <button onClick={logout}>Logout</button>}
     </div>
   );
