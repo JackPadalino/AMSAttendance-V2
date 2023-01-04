@@ -42,7 +42,7 @@ const Absences = () => {
     if(!token) return <NotFoundPage/>
     return (
         <div>
-            <h3>Absences {date}</h3>
+            <h1>Absences {date}</h1>
             <form onSubmit={getAbsences}>
                 <label htmlFor="date">Date</label>
                 <input type="date" id="date" value={date} onChange={handleDateChange}></input>

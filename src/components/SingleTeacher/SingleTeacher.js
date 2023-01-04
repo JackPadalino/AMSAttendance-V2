@@ -58,6 +58,7 @@ const SingleTeacher = () => {
     if(!token) return <NotFoundPage/>
     return (
         <div>
+            <h1>Teacher profile</h1>
             <form onSubmit={updateTeacher}>
                 <input value={firstName} onChange={handleFirstNameChange}/>
                 <input value={lastName} onChange={handleLastNameChange}/>

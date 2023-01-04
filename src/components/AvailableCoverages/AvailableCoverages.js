@@ -39,7 +39,7 @@ const AvailableCoverages = () => {
     if(!token) return <NotFoundPage/>
     return (
         <div>
-            <h3>Available teachers</h3>
+            <h1>Available coverages</h1>
             <ul>
             {availableTeachers.map((teacher) => {
                 return (
