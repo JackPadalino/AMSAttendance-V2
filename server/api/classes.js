@@ -104,7 +104,14 @@ router.get('/',async(req, res, next) => {
 // GET localhost:3000/api/classes/
 router.post('/',async(req, res, next) => {
     try {
-        const newClass = await Class.create(req.body);
+        const data = {
+            name:req.body.name,
+            school:req.body.school,
+            grade:req.body.grade,
+            period:req.body.period,
+            letterDays:req.body.letterDays
+        };
+        await Class.create(data);
         res.sendStatus(200);
     }catch(error){
         next(error);
@@ -121,7 +128,7 @@ router.put('/:classId',async(req, res, next) => {
             grade:req.body.grade,
             period:req.body.period,
             letterDays:req.body.letterDays
-          };
+        };
         const classToUpdate = await Class.findByPk(req.params.classId);
         if(!classToUpdate) throw new Error(notFoundMessage);
         await classToUpdate.update(data);
