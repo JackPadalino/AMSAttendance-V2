@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
-import { Navbar, RouterComponent } from "./";
-import { setUser,setAllUsers } from "../store/userSlice";
-import { setAllClasses } from "../store/classSlice";
+import { Navbar, RouterComponent } from "..";
+import { setUser,setAllUsers } from "../../store/userSlice";
+import { setAllClasses } from "../../store/classSlice";
 
 const App = () => {
   const dispatch = useDispatch();
