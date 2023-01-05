@@ -94,7 +94,11 @@ router.get('/:classId',async(req, res, next) => {
 // GET localhost:3000/api/classes/
 router.get('/',async(req, res, next) => {
     try {
-        const classes = await Class.findAll();
+        const classes = await Class.findAll({
+            order:[
+                ['name','ASC']
+            ]
+        });
         res.send(classes);
     }catch(error){
         next(error);
