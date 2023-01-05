@@ -5,6 +5,7 @@ import { NotFoundPage } from "..";
 import { setAllClasses } from "../../store/classSlice";
 import { set,setDay,setAllAbsences } from "../../store/absenceSlice";
 import { useSelector, useDispatch } from "react-redux";
+import { SchoolDropdown,GradeDropdown,PeriodDropdown,LetterDays } from './'
 
 const Classes = () => {
     const dispatch = useDispatch();
@@ -14,6 +15,7 @@ const Classes = () => {
     const [grade,setGrade] = useState('');
     const [period,setPeriod] = useState('');
     const [letterDays,setLetterDays] = useState([]);
+    const [successMessage,setSuccessMessage] = useState(false);
     
     const addClass = async(event) =>{
         event.preventDefault();
@@ -27,6 +29,7 @@ const Classes = () => {
         await axios.post(`/api/classes`,body);
         const allClasses = await axios.get('/api/classes');
         dispatch(setAllClasses(allClasses.data));
+        setSuccessMessage(true);
     };
 
     const handleNameChange = (event) =>{
@@ -44,7 +47,7 @@ const Classes = () => {
     const handlePeriodChange = (event) =>{
         setPeriod(event.target.value);
     };
-
+    // adding a letter day to the letterDays array if not present or removing if present
     const handleLetterDaysChange =(event)=>{
         if(letterDays.includes(event.target.value)){
             setLetterDays(letterDays.filter(day=>day!==event.target.value))
@@ -61,50 +64,15 @@ const Classes = () => {
             <form onSubmit={addClass}>
                 <div>
                     <input placeholder="Class name" onChange={handleNameChange}/>
-                    <label htmlFor="school">MS/HS</label>
-                    <select name='school' onChange={handleSchoolChange}>
-                        <option value="-">-</option>
-                        <option value="MS">MS</option>
-                        <option value="HS">HS</option>
-                    </select>
-                    <label htmlFor="grade">Grade</label>
-                    <select name='grade' onChange={handleGradeChange}>
-                        <option value="-">-</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                    </select>
-                    <label htmlFor="period">Period</label>
-                    <select name='period' onChange={handlePeriodChange}>
-                        <option value="-">-</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                    </select>
+                    <SchoolDropdown handleSchoolChange={handleSchoolChange}/>
+                    <GradeDropdown handleGradeChange={handleGradeChange}/>
+                    <PeriodDropdown handlePeriodChange={handlePeriodChange}/>
                 </div>
                 <div>
-                    <input type="checkbox" name="A day" value="A" onChange={handleLetterDaysChange}/>
-                    <label htmlFor="A day">A</label>
-                    <input type="checkbox" name="B day" value="B" onChange={handleLetterDaysChange}/>
-                    <label htmlFor="B day">B</label>
-                    <input type="checkbox" name="C day" value="C" onChange={handleLetterDaysChange}/>
-                    <label htmlFor="C day">C</label>
-                    <input type="checkbox" name="D day" value="D" onChange={handleLetterDaysChange}/>
-                    <label htmlFor="D day">D</label>
-                    <input type="checkbox" name="E day" value="E" onChange={handleLetterDaysChange}/>
-                    <label htmlFor="E day">E</label>
-                    <input type="checkbox" name="F day" value="F" onChange={handleLetterDaysChange}/>
-                    <label htmlFor="F day">F</label>
+                    <LetterDays handleLetterDaysChange={handleLetterDaysChange}/>
                 </div>
                 <button>Submit</button>
+                {successMessage && <p style={{ color: "green", marginTop: "10px" }}>Class '{name}' successfully created.</p>}
             </form>
         </div>
     );
