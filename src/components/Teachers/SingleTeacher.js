@@ -9,10 +9,10 @@ const SingleTeacher = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
     const [token, setToken] = useState(window.localStorage.getItem("token"));
-    const [userUpdatedMessage,setUserUpdatedMessage] = useState(false);
     const [firstName,setFirstName] = useState('');
     const [lastName,setLastName] = useState('');
     const [phoneNumber,setPhoneNumber] = useState('');
+    const [userUpdatedMessage,setUserUpdatedMessage] = useState(false);
     
     const fetchUser = async() =>{
         const foundUser = await axios.get(`/api/users/${id}`);
