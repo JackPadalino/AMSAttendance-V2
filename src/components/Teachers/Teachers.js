@@ -46,7 +46,7 @@ const Teachers = () => {
                 <input placeholder="First name" name="first name" onChange={handleFirstNameChange}/>
                 <input placeholder="Last name" name="last name" onChange={handleLastNameChange}/>
                 <input placeholder="+1XXXXXXXXXX" name="phone number" onChange={handlePhoneNumberChange}/>
-                <button>Login</button>
+                <button>Submit</button>
             </form>
             <div>
                 {allUsers.map((user) => {
