@@ -1,10 +1,10 @@
 import React from 'react';
 
-const PeriodDropdown = ({handlePeriodChange}) => {
+const PeriodDropdown = ({period,handlePeriodChange}) => {
     return (
         <>
             <label htmlFor="period">Period</label>
-            <select name='period' onChange={handlePeriodChange}>
+            <select name='period' value={period} onChange={handlePeriodChange}>
                 <option value="-">-</option>
                 <option value="1">1</option>
                 <option value="2">2</option>

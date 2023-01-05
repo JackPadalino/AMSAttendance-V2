@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LetterDays = ({handleLetterDaysChange}) => {
+const LetterDays = ({letterDays,handleLetterDaysChange}) => {
     return (
         <>
             <input type="checkbox" name="A day" value="A" onChange={handleLetterDaysChange}/>

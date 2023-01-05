@@ -1,8 +1,17 @@
 import axios from 'axios';
 import React, { useState,useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { useSelector, useDispatch } from "react-redux";
+import { Link,useParams } from 'react-router-dom';
 import { NotFoundPage } from "..";
+import { setAllClasses } from "../../store/classSlice";
+import { set,setDay,setAllAbsences } from "../../store/absenceSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { SchoolDropdown,GradeDropdown,PeriodDropdown,LetterDaysSingleClass } from './'
+
+const formStyle = {
+    display:'flex',
+    flexDirection:'column',
+    gap:'10px'
+};
 
 const SingleClass = () => {
     const { id } = useParams();
@@ -50,6 +59,26 @@ const SingleClass = () => {
         };
     };
 
+    const updateClass = async(event) =>{
+        event.preventDefault();
+        try{
+            const body = {
+                name,
+                school,
+                grade,
+                period,
+                letterDays
+            };
+            await axios.put(`/api/classes/${id}`,body);
+            const updateClasses = await axios.get('/api/classes');
+            dispatch(setAllClasses(updateClasses.data));
+            setClassUpdatedMessage(true);
+        }catch(error){
+            console.log(error);
+            setClassUpdatedMessage(false);
+        };
+    };
+
     useEffect(() => {
         fetchClass();
       }, []);
@@ -58,6 +87,19 @@ const SingleClass = () => {
     return (
         <div>
             <h1>{name}</h1>
+            <form style={formStyle} onSubmit={updateClass}>
+                <div>
+                    <input value={name} onChange={handleNameChange}/>
+                    <SchoolDropdown school={school} handleSchoolChange={handleSchoolChange}/>
+                    <GradeDropdown grade={grade} handleGradeChange={handleGradeChange}/>
+                    <PeriodDropdown period={period} handlePeriodChange={handlePeriodChange}/>
+                </div>
+                <div>
+                    <LetterDaysSingleClass letterDays={letterDays} handleLetterDaysChange={handleLetterDaysChange}/>
+                </div>
+                <button style={{width:'60px'}}>Submit</button>
+                {classUpdatedMessage && <p style={{ color: "green", marginTop: "10px" }}>Class '{name}' successfully updated.</p>}
+            </form>
         </div>
     );
 };

@@ -1,10 +1,10 @@
 import React from 'react';
 
-const GradeDropdown = ({handleGradeChange}) => {
+const GradeDropdown = ({grade,handleGradeChange}) => {
     return (
         <>
             <label htmlFor="grade">Grade</label>
-            <select name='grade' onChange={handleGradeChange}>
+            <select name='grade' value={grade} onChange={handleGradeChange}>
                 <option value="-">-</option>
                 <option value="6">6</option>
                 <option value="7">7</option>
