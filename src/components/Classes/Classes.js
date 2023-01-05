@@ -5,7 +5,7 @@ import { NotFoundPage } from "..";
 import { setAllClasses } from "../../store/classSlice";
 import { set,setDay,setAllAbsences } from "../../store/absenceSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { SchoolDropdown,GradeDropdown,PeriodDropdown,LetterDays } from './'
+import { SchoolDropdown,GradeDropdown,PeriodDropdown,LetterDays,TeacherDropdowns } from './'
 
 const formStyle = {
     display:'flex',
@@ -22,21 +22,28 @@ const Classes = () => {
     const [grade,setGrade] = useState('');
     const [period,setPeriod] = useState('');
     const [letterDays,setLetterDays] = useState([]);
+    const [teacher1Id,setTeacher1Id] = useState('');
+    const [teacher2Id,setTeacher2Id] = useState('');
+    const [duplicateTeacherIdMessage,setDuplicateTeacherIdMessage] = useState(false);
     const [successMessage,setSuccessMessage] = useState(false);
     
     const addClass = async(event) =>{
         event.preventDefault();
-        const body = {
-            name,
-            school,
-            grade,
-            period,
-            letterDays
+        if(!duplicateTeacherIdMessage){
+            const body = {
+                name,
+                school,
+                grade,
+                period,
+                letterDays,
+                teacher1Id,
+                teacher2Id
+            };
+            await axios.post(`/api/classes`,body);
+            const allClasses = await axios.get('/api/classes');
+            dispatch(setAllClasses(allClasses.data));
+            setSuccessMessage(true);
         };
-        await axios.post(`/api/classes`,body);
-        const allClasses = await axios.get('/api/classes');
-        dispatch(setAllClasses(allClasses.data));
-        setSuccessMessage(true);
     };
 
     const handleNameChange = (event) =>{
@@ -64,6 +71,16 @@ const Classes = () => {
         };
     };
 
+    const handleTeacher1Change = (event) =>{
+        event.target.value===teacher2Id ? setDuplicateTeacherIdMessage(true) : setDuplicateTeacherIdMessage(false);
+        setTeacher1Id(event.target.value);
+    };
+
+    const handleTeacher2Change = (event) =>{
+        event.target.value===teacher1Id ? setDuplicateTeacherIdMessage(true) : setDuplicateTeacherIdMessage(false);
+        setTeacher2Id(event.target.value);
+    };
+
     if(!token) return <NotFoundPage/>
     return (
         <div>
@@ -78,7 +95,11 @@ const Classes = () => {
                 <div>
                     <LetterDays handleLetterDaysChange={handleLetterDaysChange}/>
                 </div>
-                <button style={{width:'60px'}}>Submit</button>
+                <div>
+                    <TeacherDropdowns handleTeacher1Change={handleTeacher1Change} handleTeacher2Change={handleTeacher2Change}/>
+                </div>
+                {!duplicateTeacherIdMessage && <button style={{width:'60px'}}>Submit</button>}{}
+                {duplicateTeacherIdMessage && <p style={{ color: "red", marginTop: "10px" }}>Warning: Duplicate teacher selected!</p>}
                 {successMessage && <p style={{ color: "green", marginTop: "10px" }}>Class '{name}' successfully created.</p>}
             </form>
             <div>

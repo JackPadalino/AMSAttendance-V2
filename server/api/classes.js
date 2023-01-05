@@ -108,14 +108,16 @@ router.get('/',async(req, res, next) => {
 // GET localhost:3000/api/classes/
 router.post('/',async(req, res, next) => {
     try {
-        const data = {
+        const classData = {
             name:req.body.name,
             school:req.body.school,
             grade:req.body.grade,
             period:req.body.period,
             letterDays:req.body.letterDays
         };
-        await Class.create(data);
+        const newClass = await Class.create(classData);
+        await UserClass.create({userId:req.body.teacher1Id,classId:newClass.id});
+        await UserClass.create({userId:req.body.teacher2Id,classId:newClass.id});
         res.sendStatus(200);
     }catch(error){
         next(error);
