@@ -5,7 +5,7 @@ import { NotFoundPage } from "..";
 import { setAllClasses } from "../../store/classSlice";
 import { set,setDay,setAllAbsences } from "../../store/absenceSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { SchoolDropdown,GradeDropdown,PeriodDropdown,LetterDays,TeacherDropdowns } from './'
+import { SchoolDropdown,GradeDropdown,PeriodDropdown,LetterDays } from './'
 
 const formStyle = {
     display:'flex',
@@ -16,13 +16,12 @@ const formStyle = {
 const Classes = () => {
     const dispatch = useDispatch();
     const [token, setToken] = useState(window.localStorage.getItem("token"));
+    const { allClasses } = useSelector((state) => state.class);
     const [name,setName] = useState('');
     const [school,setSchool] = useState('');
     const [grade,setGrade] = useState('');
     const [period,setPeriod] = useState('');
     const [letterDays,setLetterDays] = useState([]);
-    const [teacher1Id,setTeacher1Id] = useState('');
-    const [teacher2Id,setTeacher2Id] = useState('');
     const [successMessage,setSuccessMessage] = useState(false);
     
     const addClass = async(event) =>{
@@ -55,6 +54,7 @@ const Classes = () => {
     const handlePeriodChange = (event) =>{
         setPeriod(event.target.value);
     };
+
     // adding a letter day to the letterDays array if not present or removing if present
     const handleLetterDaysChange =(event)=>{
         if(letterDays.includes(event.target.value)){
@@ -63,15 +63,6 @@ const Classes = () => {
             setLetterDays([...letterDays,event.target.value]);
         };
     };
-
-    const handleTeacher1Change = (event) =>{
-        setTeacher1Id(event.target.value);
-    };
-
-    const handleTeacher2Change = (event) =>{
-        setTeacher2Id(event.target.value);
-    };
-
 
     if(!token) return <NotFoundPage/>
     return (
@@ -87,12 +78,18 @@ const Classes = () => {
                 <div>
                     <LetterDays handleLetterDaysChange={handleLetterDaysChange}/>
                 </div>
-                <div>
-                    <TeacherDropdowns handleTeacher1Change={handleTeacher1Change} handleTeacher2Change={handleTeacher2Change}/>
-                </div>
                 <button style={{width:'60px'}}>Submit</button>
                 {successMessage && <p style={{ color: "green", marginTop: "10px" }}>Class '{name}' successfully created.</p>}
             </form>
+            <div>
+                {allClasses.map((eachClass) => {
+                    return (
+                        <div key={eachClass.id}>
+                            <Link to={`/classes/${eachClass.id}`}>{eachClass.name}</Link>
+                        </div>  
+                    );
+                })}
+            </div>
         </div>
     );
 };
