@@ -9,7 +9,7 @@ const AvailableCoverages = () => {
     const [token, setToken] = useState(window.localStorage.getItem("token"));
     const { allUsers } = useSelector((state) => state.user);
     const { allAbsentUsers } = useSelector((state) => state.absence);
-    const [availableTeachers,setAvailableTeachers] = useState([]);
+    const [availableUsers,setAvailableUsers] = useState([]);
     const [coveredClassUserIds,setCoveredClassUserIds] = useState([]);
 
     const fetchData = async() => {
@@ -38,7 +38,7 @@ const AvailableCoverages = () => {
         const availableUserIds = allUserIds.filter(id => !allUnAvailableUserIds.includes(id)); 
         const userPromises = availableUserIds.map(id => axios.get(`/api/users/${id}`));
         const userResponses = await Promise.all(userPromises);
-        setAvailableTeachers(userResponses.map(response => response.data));
+        setAvailableUsers(userResponses.map(response => response.data));
       };
 
     useEffect(() => {
@@ -50,11 +50,11 @@ const AvailableCoverages = () => {
         <div>
             <h1>Available coverages</h1>
             <ul>
-            {availableTeachers.map((teacher) => {
+            {availableUsers.map((user) => {
                 return (
-                    (coveredClassUserIds.includes(teacher.id) ? 
-                    <li key={teacher.id}>{teacher.firstName} {teacher.lastName}* Co-Teacher</li> : 
-                    <li key={teacher.id}>{teacher.firstName} {teacher.lastName}</li>)
+                    (coveredClassUserIds.includes(user.id) ? 
+                    <li key={user.id} style={{'color':'red'}}>{user.firstName} {user.lastName} - Co-teacher</li> : 
+                    <li key={user.id}>{user.firstName} {user.lastName}</li>)
                 )
             })}
             </ul>
