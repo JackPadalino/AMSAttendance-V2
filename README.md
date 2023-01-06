@@ -10,7 +10,7 @@ Express JS app to automate teacher attendance and staff covereages.
 
 ### Next steps
 - *TRIPLE check absent teacher classes and available teachers!*
-- Update API route and SingleClass component to look for co-teachers first - if co-teacher is present, state that and provide other available teachers
+- Updated co teacher branch - need to check what happens if BOTH teachers for a period are absent
 - Add forms to add new classes, and assign classes to teachers
 - Add the ability for admin to schedule absences ahead of time
 - Update teacher schedule to add/remove classes
