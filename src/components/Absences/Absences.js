@@ -11,8 +11,12 @@ const Absences = () => {
     const [token, setToken] = useState(window.localStorage.getItem("token"));
 
     const handleDateChange = (event) => {
-        const newDate = event.target.value;
-        dispatch(setDate(newDate));
+        const selectedDate = event.target.value;
+        const year = selectedDate.slice(0,4);
+        const month = parseInt(selectedDate.slice(5,7));
+        const day = parseInt(selectedDate.slice(8,10));
+        const finalDate = `${year}-${month}-${day}`
+        dispatch(setDate(finalDate));
     };
 
     const handleLetterDayChange = (event) =>{
