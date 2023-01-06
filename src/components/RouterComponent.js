@@ -22,7 +22,7 @@ const RouterComponent = () => {
       <Route exact path="/teachers/:id" element={<SingleTeacher />} />
       <Route exact path="/classes" element={<Classes />} />
       <Route exact path="/classes/:id" element={<SingleClass />} />
-      <Route exact path="/coverages/:school/:period/:letter" element={<AvailableCoverages />} />
+      <Route exact path="/coverages/:classId/:school/:period/:letter" element={<AvailableCoverages />} />
     </Routes>
   );
 };
