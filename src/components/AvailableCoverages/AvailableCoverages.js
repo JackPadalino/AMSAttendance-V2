@@ -10,12 +10,14 @@ const AvailableCoverages = () => {
     const { allUsers } = useSelector((state) => state.user);
     const { allAbsentUsers } = useSelector((state) => state.absence);
     const [availableUsers,setAvailableUsers] = useState([]);
+    const [thisClass,setThisClass] = useState({});
     let [thisClassUserIds,setThisClassUserIds] = useState([]);
 
     const fetchData = async() => {
         // fetching the class that needs coverage
         // finding what teachers already have that class assigned to them (finding teachers and coteachers)
         const thisClass = await axios.get(`/api/classes/${classId}`);
+        setThisClass(thisClass.data);
         const thisClassUsers = thisClass.data.users;
         thisClassUserIds = thisClassUsers.map((user)=>user.id);
         setThisClassUserIds(thisClassUserIds);
@@ -49,7 +51,7 @@ const AvailableCoverages = () => {
     if(!token) return <NotFoundPage/>
     return (
         <div>
-            <h1>Available coverages</h1>
+            <h1>Available coverages for {thisClass.school}.{thisClass.name}.G{thisClass.grade}.P{thisClass.period}</h1>
             <ul>
             {availableUsers.map((user) => {
                 return (
