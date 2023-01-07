@@ -544,7 +544,7 @@ const seed = async () => {
         {userId:TeahWatson.id,dayId:December202022.id},
         {userId:RitaReinoso.id,dayId:December202022.id},
         // December 21 2022 absences
-        {userId:ChikudiRichardson.id,dayId:December212022.id},
+        //{userId:ChikudiRichardson.id,dayId:December212022.id},
         {userId:VirginiaFord.id,dayId:December212022.id},
     ];
 
