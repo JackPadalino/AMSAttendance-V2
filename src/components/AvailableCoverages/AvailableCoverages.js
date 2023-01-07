@@ -10,14 +10,15 @@ const AvailableCoverages = () => {
     const { allUsers } = useSelector((state) => state.user);
     const { allAbsentUsers } = useSelector((state) => state.absence);
     const [availableUsers,setAvailableUsers] = useState([]);
-    const [thisClassUserIds,setThisClassUserIds] = useState([]);
+    let [thisClassUserIds,setThisClassUserIds] = useState([]);
 
     const fetchData = async() => {
         // fetching the class that needs coverage
         // finding what teachers already have that class assigned to them (finding teachers and coteachers)
         const thisClass = await axios.get(`/api/classes/${classId}`);
         const thisClassUsers = thisClass.data.users;
-        setCoveredClassUserIds(thisClassUsers.map((user)=>user.id));
+        thisClassUserIds = thisClassUsers.map((user)=>user.id);
+        setThisClassUserIds(thisClassUserIds);
         // fetching an array of all classes happening at this time
         // making an array of all busy teachers that are teaching during this period
         // making an array of all teachers that all teachers that are either busy OR are not co-teachers of that class
@@ -44,6 +45,7 @@ const AvailableCoverages = () => {
         fetchData();
     }, []);
 
+
     if(!token) return <NotFoundPage/>
     return (
         <div>
@@ -52,7 +54,7 @@ const AvailableCoverages = () => {
             {availableUsers.map((user) => {
                 return (
                     (thisClassUserIds.includes(user.id) ? 
-                    <li key={user.id} style={{'color':'red'}}>{user.firstName} {user.lastName} - co-teacher</li> : 
+                    <li key={user.id} style={{'color':'red'}}><i>{user.firstName} {user.lastName}</i></li> : 
                     <li key={user.id}>{user.firstName} {user.lastName}</li>)
                 )
             })}
