@@ -70,7 +70,7 @@ const Absences = () => {
                             <ul>
                                 {userObj.classes.map((eachClass) =>{
                                     return (
-                                        <li key={eachClass.id}><Link to={`/coverages/${eachClass.school}/${eachClass.period}/${letterDay}`}>{eachClass.name} - {eachClass.period}</Link></li>
+                                        <li key={eachClass.id}><Link to={`/coverages/${eachClass.id}/${eachClass.school}/${eachClass.period}/${letterDay}`}>{eachClass.name} - {eachClass.period}</Link></li>
                                     )
                                 })}
                             </ul>

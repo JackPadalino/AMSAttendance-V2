@@ -5,18 +5,27 @@ import { useParams } from 'react-router-dom';
 import { NotFoundPage } from "..";
 
 const AvailableCoverages = () => {
-    const { school,period,letter } = useParams();
+    const { classId,school,period,letter } = useParams();
     const [token, setToken] = useState(window.localStorage.getItem("token"));
     const { allUsers } = useSelector((state) => state.user);
     const { allAbsentUsers } = useSelector((state) => state.absence);
-    const [availableTeachers,setAvailableTeachers] = useState([]);
+    const [availableUsers,setAvailableUsers] = useState([]);
+    let [thisClassUserIds,setThisClassUserIds] = useState([]);
 
     const fetchData = async() => {
+        // fetching the class that needs coverage
+        // finding what teachers already have that class assigned to them (finding teachers and coteachers)
+        const thisClass = await axios.get(`/api/classes/${classId}`);
+        const thisClassUsers = thisClass.data.users;
+        thisClassUserIds = thisClassUsers.map((user)=>user.id);
+        setThisClassUserIds(thisClassUserIds);
         // fetching an array of all classes happening at this time
-        // making an array of all unavailable teachers from the classes going on at this time
+        // making an array of all busy teachers that are teaching during this period
+        // making an array of all teachers that all teachers that are either busy OR are not co-teachers of that class
         // combining unavailable teachers with absent teachers
         const classes = await axios.get(`/api/classes/${school}/${period}/${letter}`);
-        const unAvailableUsers = classes.data.flatMap(eachClass => eachClass.users);
+        const busyUsers = classes.data.flatMap(eachClass => eachClass.users);
+        const unAvailableUsers = busyUsers.filter((user)=>!thisClassUserIds.includes(user.id));
         const allUnAvailableUsers = [...allAbsentUsers,...unAvailableUsers];
         // making an array of all unique unavailable teacher ids
         // comparing the two user id arrays and making a final array of available user ids
@@ -29,21 +38,24 @@ const AvailableCoverages = () => {
         const availableUserIds = allUserIds.filter(id => !allUnAvailableUserIds.includes(id)); 
         const userPromises = availableUserIds.map(id => axios.get(`/api/users/${id}`));
         const userResponses = await Promise.all(userPromises);
-        setAvailableTeachers(userResponses.map(response => response.data));
+        setAvailableUsers(userResponses.map(response => response.data));
       };
 
     useEffect(() => {
         fetchData();
     }, []);
 
+
     if(!token) return <NotFoundPage/>
     return (
         <div>
             <h1>Available coverages</h1>
             <ul>
-            {availableTeachers.map((teacher) => {
+            {availableUsers.map((user) => {
                 return (
-                    <li key={teacher.id}>{teacher.firstName} {teacher.lastName}</li>
+                    (thisClassUserIds.includes(user.id) ? 
+                    <li key={user.id} style={{'color':'red'}}><i>{user.firstName} {user.lastName}</i></li> : 
+                    <li key={user.id}>{user.firstName} {user.lastName}</li>)
                 )
             })}
             </ul>
