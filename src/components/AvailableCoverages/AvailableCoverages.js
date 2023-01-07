@@ -10,22 +10,21 @@ const AvailableCoverages = () => {
     const { allUsers } = useSelector((state) => state.user);
     const { allAbsentUsers } = useSelector((state) => state.absence);
     const [availableUsers,setAvailableUsers] = useState([]);
-    const [coveredClassUserIds,setCoveredClassUserIds] = useState([]);
+    const [thisClassUserIds,setThisClassUserIds] = useState([]);
 
     const fetchData = async() => {
         // fetching the class that needs coverage
         // finding what teachers already have that class assigned to them (finding teachers and coteachers)
-        const coveredClass = await axios.get(`/api/classes/${classId}`);
-        const coveredClassUsers = coveredClass.data.users;
-        const coveredClassUsersIds = coveredClassUsers.map((user)=>user.id);
-        setCoveredClassUserIds(coveredClassUsersIds);
+        const thisClass = await axios.get(`/api/classes/${classId}`);
+        const thisClassUsers = thisClass.data.users;
+        setCoveredClassUserIds(thisClassUsers.map((user)=>user.id));
         // fetching an array of all classes happening at this time
         // making an array of all busy teachers that are teaching during this period
         // making an array of all teachers that all teachers that are either busy OR are not co-teachers of that class
         // combining unavailable teachers with absent teachers
         const classes = await axios.get(`/api/classes/${school}/${period}/${letter}`);
         const busyUsers = classes.data.flatMap(eachClass => eachClass.users);
-        const unAvailableUsers = busyUsers.filter((user)=>!coveredClassUsersIds.includes(user.id));
+        const unAvailableUsers = busyUsers.filter((user)=>!thisClassUserIds.includes(user.id));
         const allUnAvailableUsers = [...allAbsentUsers,...unAvailableUsers];
         // making an array of all unique unavailable teacher ids
         // comparing the two user id arrays and making a final array of available user ids
@@ -52,8 +51,8 @@ const AvailableCoverages = () => {
             <ul>
             {availableUsers.map((user) => {
                 return (
-                    (coveredClassUserIds.includes(user.id) ? 
-                    <li key={user.id} style={{'color':'red'}}>{user.firstName} {user.lastName} - Co-teacher</li> : 
+                    (thisClassUserIds.includes(user.id) ? 
+                    <li key={user.id} style={{'color':'red'}}>{user.firstName} {user.lastName} - co-teacher</li> : 
                     <li key={user.id}>{user.firstName} {user.lastName}</li>)
                 )
             })}
