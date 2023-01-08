@@ -16,6 +16,7 @@ const AvailableCoverages = () => {
     const fetchData = async() => {
         // fetching the class that needs coverage
         // finding what teachers already have that class assigned to them (finding teachers and coteachers)
+        // making an array of the user ids for all co teachers of this class
         const thisClass = await axios.get(`/api/classes/${classId}`);
         setThisClass(thisClass.data);
         const thisClassUsers = thisClass.data.users;
