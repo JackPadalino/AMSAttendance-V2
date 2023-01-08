@@ -8,14 +8,17 @@ const AvailableCoverages = () => {
     const { classId,school,period,letter } = useParams();
     const [token, setToken] = useState(window.localStorage.getItem("token"));
     const { allUsers } = useSelector((state) => state.user);
-    const { allAbsentUsers } = useSelector((state) => state.absence);
+    const { allAbsentUsers,letterDay } = useSelector((state) => state.absence);
     const [availableUsers,setAvailableUsers] = useState([]);
+    const [thisClass,setThisClass] = useState({});
     let [thisClassUserIds,setThisClassUserIds] = useState([]);
 
     const fetchData = async() => {
         // fetching the class that needs coverage
         // finding what teachers already have that class assigned to them (finding teachers and coteachers)
+        // making an array of the user ids for all co teachers of this class
         const thisClass = await axios.get(`/api/classes/${classId}`);
+        setThisClass(thisClass.data);
         const thisClassUsers = thisClass.data.users;
         thisClassUserIds = thisClassUsers.map((user)=>user.id);
         setThisClassUserIds(thisClassUserIds);
@@ -49,16 +52,25 @@ const AvailableCoverages = () => {
     if(!token) return <NotFoundPage/>
     return (
         <div>
-            <h1>Available coverages</h1>
-            <ul>
-            {availableUsers.map((user) => {
-                return (
-                    (thisClassUserIds.includes(user.id) ? 
-                    <li key={user.id} style={{'color':'red'}}><i>{user.firstName} {user.lastName}</i></li> : 
-                    <li key={user.id}>{user.firstName} {user.lastName}</li>)
-                )
-            })}
-            </ul>
+            <h1>Available coverages for {thisClass.school} {thisClass.name}{thisClass.grade} - Period {thisClass.period} - {letterDay} day</h1>
+            <div>
+                {availableUsers.map((user) => {
+                    return (
+                        user.role==='teacher' && <div key={user.id}>
+                            {thisClassUserIds.includes(user.id) ? 
+                            <p style={{'color':'red'}}><i>{user.firstName} {user.lastName}</i></p> : 
+                            <p>{user.firstName} {user.lastName}</p>}
+                            <ul>
+                                {user.classes.map((eachClass)=>{
+                                    return (
+                                        eachClass.letterDays.includes(letterDay) && <li key={eachClass.id}>{eachClass.name} - P{eachClass.period}</li>
+                                    )
+                                })}
+                            </ul>
+                        </div>
+                    )
+                })}
+            </div>
         </div>
     );
 };
