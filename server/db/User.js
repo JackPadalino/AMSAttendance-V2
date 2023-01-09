@@ -10,6 +10,13 @@ const User = db.define("user", {
   //     primaryKey: true,
   //     defaultValue: UUIDV4
   // },
+  fullName: {
+    type: Sequelize.STRING,
+    validate: {
+        notEmpty: true,
+    },
+    allowNull: false,
+  },
   firstName: {
     type: Sequelize.STRING,
     validate: {

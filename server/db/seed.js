@@ -17,60 +17,70 @@ const seed = async () => {
     const userList = [
         // create 10 HS teachers here
         {
-            firstName: 'Jack',
-            lastName: 'Padalino',
+            fullName:'Jack Padalino',
+            firstName:'Jack',
+            lastName:'Padalino',
             email: 'J.Padalino@hotmail.com',
             phoneNumber: '+15858804798'
         },
         {
-            firstName: 'Teah',
-            lastName: "Watson",
+            fullName:'Teah Watson',
+            firstName:'Teah',
+            lastName:'Watson',
             email: 'T.Watson@gmail.com',
             phoneNumber: '+15248333600'
         },
         {
-            firstName: 'James',
-            lastName: 'Quinn',
+            fullName:'James Quinn',
+            firstName:'James',
+            lastName:'Quinn',
             email: 'j.Quinn@hotmail.com',
             phoneNumber: '+15248333601'
         },
         {
-            firstName: 'Bismarck',
-            lastName: 'Oppong',
+            fullName:'Bismarck Oppong',
+            firstName:'Bismarck',
+            lastName:'Oppong',
             email: 'B.Oppong@hotmail.com',
             phoneNumber: '+15248333603'
         },
         {
-            firstName: 'Ross',
-            lastName: 'Chodan',
+            fullName:'Ross Chodan',
+            firstName:'Ross',
+            lastName:'Chodan',
             email: 'R.Romain@yahoo.com',
             phoneNumber: '+15248333604'
         },
         {
-            firstName: 'Jasmine',
-            lastName: 'Carksy',
+            fullName:'Jasmine Carsky',
+            firstName:'Jasmine',
+            lastName:'Carsky',
             email: 'J.Carsky@yahoo.com',
             phoneNumber: '+15248333605'
         },
         {
-            firstName: 'Kelly',
-            lastName: 'Mobley',
+            fullName:'Kelly Mobley',
+            firstName:'Kelly',
+            lastName:'Mobley',
             email: 'K.Mobley@hotmail.com',
             phoneNumber: '+15248333606'
         },
         {
+            fullName:'Lisa Lyons',
             firstName: 'Lisa',
             lastName: 'Lyons',
             email: 'Alicia_West75@yahoo.com',
             phoneNumber: '+15248333607'
         },
         {
-            firstName: 'Michelle',
-            lastName: 'Stover',
+            fullName:'Michelle Stover',
+            firstName:'Michelle',
+            lastName:'Stover',
             email: 'M.Stover@gmail.com',
             phoneNumber: '+15248333608'
         },
         {
+            fullName:'Asatou Sohna',
             firstName: 'Asatou',
             lastName: 'Sohna',
             email: 'A.Sohna@yahoo.com',
@@ -78,60 +88,70 @@ const seed = async () => {
         },
         // create 10 MS teachers here
         {
+            fullName:'Chaka Baker',
             firstName: 'Chaka',
             lastName: 'Baker',
             email: 'C.Baker@gmail.com',
             phoneNumber: '+15248333610'
         },
         {
+            fullName:'Joe Suppo',
             firstName: 'Joe',
             lastName: 'Suppo',
             email: 'J.Suppo@gmail.com',
             phoneNumber: '+15248333611'
         },
         {
+            fullName:'Matt Schoonmaker',
             firstName: 'Matt',
             lastName: 'Schoonmaker',
             email: 'M.Suppo@gmail.com',
             phoneNumber: '+15248333612'
         },
         {
+            fullName:'Melvin Rosado',
             firstName: 'Melvin',
             lastName: 'Rosado',
             email: 'M.Rosado@gmail.com',
             phoneNumber: '+15248333613'
         },
         {
+            fullName:'Chikudi Richardson',
             firstName: 'Chikudi',
             lastName: 'Richardson',
             email: 'C.Richardson@gmail.com',
             phoneNumber: '+15248333614'
         },
         {
+            fullName:'Shira Collado',
             firstName: 'Shira',
             lastName: 'Collado',
             email: 'S.Collado@gmail.com',
             phoneNumber: '+15248333615'
         },
         {
+            fullName:'Virginia Ford',
             firstName: 'Virginia',
             lastName: 'Ford',
             email: 'V.Ford@gmail.com',
             phoneNumber: '+15248333616'
         },
         {
+            fullName:'Rita Reinoso',
             firstName: 'Rita',
             lastName: 'Reinoso',
             email: 'R.Reinoso@gmail.com',
             phoneNumber: '+15248333617'
         },
         {
+            fullName:'Lena Pagoulatos',
             firstName: 'Lena',
             lastName: 'Pagoulatos',
             email: 'L.Pagoulatos@gmail.com',
             phoneNumber: '+15248333618'
         },
         {
+            fullName:'Melissa Alvarez',
             firstName: 'Melissa',
             lastName: 'Alvarez',
             email: 'M.Alvarez@gmail.com',
@@ -139,6 +159,7 @@ const seed = async () => {
         },
         // create Admin users here
         {
+            fullName:'Reggie Scott',
             firstName: 'Reggie',
             lastName: 'Scott',
             email: 'R.Scott@amsbronx.org',
@@ -148,6 +169,7 @@ const seed = async () => {
             role:'admin'
         },
         {
+            fullName:'Ingrid Chung',
             firstName: 'Ingrid',
             lastName: 'Chung',
             email: 'I.Chung@amsbronx.org',
