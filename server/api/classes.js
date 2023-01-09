@@ -116,13 +116,13 @@ router.post('/',async(req, res, next) => {
             period:req.body.period,
             letterDays:req.body.letterDays
         };
-        const newClass = await Class.create(classData);
         const teacherData = req.body.teacherNames;
-        teacherData.forEach(async(name)=>{
-            if(name){
+        const newClass = await Class.create(classData);
+        teacherData.forEach(async(fullName)=>{
+            if(fullName){
                 const user = await User.findOne({
                     where:{
-                        fullName:name
+                        fullName:fullName
                     }
                 });
                 await UserClass.create({userId:user.id,classId:newClass.id});
