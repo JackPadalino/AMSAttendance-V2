@@ -95,6 +95,7 @@ router.get('/:classId',async(req, res, next) => {
 router.get('/',async(req, res, next) => {
     try {
         const classes = await Class.findAll({
+            include:[User],
             order:[
                 ['name','ASC']
             ]
@@ -116,11 +117,18 @@ router.post('/',async(req, res, next) => {
             letterDays:req.body.letterDays
         };
         const newClass = await Class.create(classData);
-        const teacherIdData = req.body.teacherIds;
-        teacherIdData.forEach(async(id)=>{
-            if(id) await UserClass.create({userId:id,classId:newClass.id})
+        const teacherData = req.body.teacherNames;
+        teacherData.forEach(async(name)=>{
+            if(name){
+                const user = await User.findOne({
+                    where:{
+                        fullName:name
+                    }
+                });
+                await UserClass.create({userId:user.id,classId:newClass.id});
+            };
         });
-        res.sendStatus(200);
+        res.send(newClass);
     }catch(error){
         next(error);
     };

@@ -11,7 +11,7 @@ const TeacherDropdowns = ({handleTeacher1Change,handleTeacher2Change}) => {
                 <option value="-">-</option>
                 {allUsers.map((user) => {
                     return (
-                        <option key={user.id} value={user.id}>{user.firstName} {user.lastName}</option>
+                        <option key={user.id} value={user.fullName}>{user.fullName}</option>
                     );
                 })}
             </select>
@@ -20,7 +20,7 @@ const TeacherDropdowns = ({handleTeacher1Change,handleTeacher2Change}) => {
                 <option value="-">-</option>
                 {allUsers.map((user) => {
                     return (
-                        <option key={user.id} value={user.id}>{user.firstName} {user.lastName}</option>
+                        <option key={user.id} value={user.fullName}>{user.fullName}</option>
                     );
                 })}
             </select>
