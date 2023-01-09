@@ -116,8 +116,10 @@ router.post('/',async(req, res, next) => {
             letterDays:req.body.letterDays
         };
         const newClass = await Class.create(classData);
-        await UserClass.create({userId:req.body.teacher1Id,classId:newClass.id});
-        await UserClass.create({userId:req.body.teacher2Id,classId:newClass.id});
+        const teacherIdData = req.body.teacherIds;
+        teacherIdData.forEach(async(id)=>{
+            if(id) await UserClass.create({userId:id,classId:newClass.id})
+        });
         res.sendStatus(200);
     }catch(error){
         next(error);
@@ -136,6 +138,14 @@ router.put('/:classId',async(req, res, next) => {
             letterDays:req.body.letterDays
         };
         const classToUpdate = await Class.findByPk(req.params.classId);
+
+        const userClasses = await UserClass.findAll({
+            where:{
+                classId:classToUpdate.id
+            }
+        });
+        console.log(userClasses);
+
         if(!classToUpdate) throw new Error(notFoundMessage);
         await classToUpdate.update(data);
         res.sendStatus(200);
