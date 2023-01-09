@@ -128,7 +128,7 @@ router.post('/',async(req, res, next) => {
                 await UserClass.create({userId:user.id,classId:newClass.id});
             };
         });
-        res.send(newClass);
+        res.sendStatus(200);
     }catch(error){
         next(error);
     };
