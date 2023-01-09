@@ -22,8 +22,9 @@ const Classes = () => {
     const [grade,setGrade] = useState('');
     const [period,setPeriod] = useState('');
     const [letterDays,setLetterDays] = useState([]);
-    const [teacher1Id,setTeacher1Id] = useState('');
-    const [teacher2Id,setTeacher2Id] = useState('');
+    const [teacher1Id,setTeacher1Id] = useState(null);
+    const [teacher2Id,setTeacher2Id] = useState(null);
+    const [teacherIds,setTeacherIds] = useState([]);
     const [duplicateTeacherIdMessage,setDuplicateTeacherIdMessage] = useState(false);
     const [successMessage,setSuccessMessage] = useState(false);
     
@@ -36,8 +37,7 @@ const Classes = () => {
                 grade,
                 period,
                 letterDays,
-                teacher1Id,
-                teacher2Id
+                teacherIds
             };
             await axios.post(`/api/classes`,body);
             const allClasses = await axios.get('/api/classes');
@@ -74,11 +74,13 @@ const Classes = () => {
     const handleTeacher1Change = (event) =>{
         event.target.value===teacher2Id ? setDuplicateTeacherIdMessage(true) : setDuplicateTeacherIdMessage(false);
         setTeacher1Id(event.target.value);
+        setTeacherIds([event.target.value,teacher2Id]);
     };
 
     const handleTeacher2Change = (event) =>{
         event.target.value===teacher1Id ? setDuplicateTeacherIdMessage(true) : setDuplicateTeacherIdMessage(false);
         setTeacher2Id(event.target.value);
+        setTeacherIds([teacher1Id,event.target.value]);
     };
 
     if(!token) return <NotFoundPage/>
