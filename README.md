@@ -9,6 +9,7 @@ Express JS app to automate teacher attendance and staff covereages.
 - Using Twilio API and ngrok webhooks
 
 ### Next steps
+- Admin requests: show how many coverages and absences next to a teachers name and create a dropdown for admin to select a teacher's name, the letter day and see what classes need coverages
 - *TRIPLE check absent teacher classes and available teachers!*
 - Update classes to change name, period, school, letter days, and teachers
 - Add the ability for admin to schedule absences ahead of time
