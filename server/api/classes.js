@@ -109,6 +109,7 @@ router.get('/',async(req, res, next) => {
 // POST localhost:3000/api/classes/
 router.post('/',async(req, res, next) => {
     try {
+        // creating the new class
         const classData = {
             name:req.body.className,
             school:req.body.school,
@@ -116,10 +117,10 @@ router.post('/',async(req, res, next) => {
             period:req.body.period,
             letterDays:req.body.letterDays
         };
-        const teacherData = req.body.teacherNames;
-
-        // creating the new class
         const newClass = await Class.create(classData);
+        
+        // assigning teachers to the newly created class
+        const teacherData = req.body.teacherNames;
         teacherData.forEach(async(fullName)=>{
             const foundTeacher = await User.findOne({
                 where:{
