@@ -18,7 +18,7 @@ const formStyle = {
 
 const CreateClassForm = () => {
     const dispatch = useDispatch();
-    const [name,setName] = useState('');
+    const [className,setClassName] = useState('');
     const [school,setSchool] = useState('');
     const [grade,setGrade] = useState('');
     const [period,setPeriod] = useState('');
@@ -33,7 +33,7 @@ const CreateClassForm = () => {
         event.preventDefault();
         if(!duplicateTeacherNameMessage){
             const body = {
-                name,
+                className,
                 school,
                 grade,
                 period,
@@ -48,7 +48,7 @@ const CreateClassForm = () => {
     };
 
     const handleNameChange = (event) =>{
-        setName(event.target.value);
+        setClassName(event.target.value);
     };
 
     const handleSchoolChange = (event) =>{
@@ -101,9 +101,8 @@ const CreateClassForm = () => {
                     <Teacher1Select handleTeacher1Change={handleTeacher1Change}/>
                     <Teacher2Select handleTeacher2Change={handleTeacher2Change}/>
                 </div>
-                {!duplicateTeacherNameMessage && <button style={{width:'60px'}}>Submit</button>}{}
-                {duplicateTeacherNameMessage && <p style={{ color: "red", marginTop: "10px" }}>Warning: Duplicate teacher selected!</p>}
-                {successMessage && <p style={{ color: "green", marginTop: "10px" }}>Class '{name}' successfully created.</p>}
+                {duplicateTeacherNameMessage ? <p style={{ color: "red", marginTop: "10px" }}>Warning: Duplicate teacher selected!</p> : <button style={{width:'60px'}}>Submit</button>}
+                {successMessage && <p style={{ color: "green", marginTop: "10px" }}>Class '{className}' successfully created.</p>}
             </form>
         </>
     );

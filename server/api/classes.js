@@ -110,7 +110,7 @@ router.get('/',async(req, res, next) => {
 router.post('/',async(req, res, next) => {
     try {
         const classData = {
-            name:req.body.name,
+            name:req.body.className,
             school:req.body.school,
             grade:req.body.grade,
             period:req.body.period,

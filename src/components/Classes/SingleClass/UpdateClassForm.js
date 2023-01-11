@@ -120,9 +120,8 @@ const UpdateClassForm = () => {
                     <Teacher1Select teacher1Name={teacher1Name} handleTeacher1Change={handleTeacher1Change}/>
                     <Teacher2Select teacher2Name={teacher2Name} handleTeacher2Change={handleTeacher2Change}/>
                 </div>
-                {!duplicateTeacherNameMessage && <button style={{width:'60px'}}>Submit</button>}{}
-                {duplicateTeacherNameMessage && <p style={{ color: "red", marginTop: "10px" }}>Warning: Duplicate teacher selected!</p>}
-                {successMessage && <p style={{ color: "green", marginTop: "10px" }}>Class '{name}' successfully created.</p>}
+                {duplicateTeacherNameMessage ? <p style={{ color: "red", marginTop: "10px" }}>Warning: Duplicate teacher selected!</p> : <button style={{width:'60px'}}>Submit</button>}
+                {successMessage && <p style={{ color: "green", marginTop: "10px" }}>Class '{className}' successfully created.</p>}
             </form>
         </>
     );
