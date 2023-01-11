@@ -5,10 +5,10 @@ import {
   Login,
   Absences,
   Teachers,
-  Classes,
+  AllClassesPage,
   AvailableCoverages,
   SingleTeacher,
-  SingleClass
+  SingleClassPage
 } from ".";
 
 const RouterComponent = () => {
@@ -20,8 +20,8 @@ const RouterComponent = () => {
       <Route exact path="/absences" element={<Absences />} />
       <Route exact path="/teachers" element={<Teachers />} />
       <Route exact path="/teachers/:id" element={<SingleTeacher />} />
-      <Route exact path="/classes" element={<Classes />} />
-      <Route exact path="/classes/:id" element={<SingleClass />} />
+      <Route exact path="/classes" element={<AllClassesPage />} />
+      <Route exact path="/classes/:id" element={<SingleClassPage />} />
       <Route exact path="/coverages/:classId/:school/:period/:letter" element={<AvailableCoverages />} />
     </Routes>
   );

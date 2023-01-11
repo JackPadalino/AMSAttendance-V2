@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LetterDaysSingleClass = ({letterDays,handleLetterDaysChange}) => {
+const LetterDaysSelect = ({letterDays,handleLetterDaysChange}) => {
     return (
         <>
             {letterDays.includes('A') ? <input type="checkbox" name="A day" value="A" onChange={handleLetterDaysChange} checked={true}/> :
@@ -30,4 +30,4 @@ const LetterDaysSingleClass = ({letterDays,handleLetterDaysChange}) => {
     );
 };
 
-export default LetterDaysSingleClass;
+export default LetterDaysSelect;

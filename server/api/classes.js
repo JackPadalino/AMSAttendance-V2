@@ -106,56 +106,72 @@ router.get('/',async(req, res, next) => {
     };
 });
 
-// GET localhost:3000/api/classes/
+// POST localhost:3000/api/classes/
 router.post('/',async(req, res, next) => {
     try {
         const classData = {
-            name:req.body.name,
+            name:req.body.className,
             school:req.body.school,
             grade:req.body.grade,
             period:req.body.period,
             letterDays:req.body.letterDays
         };
         const teacherData = req.body.teacherNames;
+
+        // creating the new class
         const newClass = await Class.create(classData);
         teacherData.forEach(async(fullName)=>{
-            if(fullName){
-                const user = await User.findOne({
-                    where:{
-                        fullName:fullName
-                    }
-                });
-                await UserClass.create({userId:user.id,classId:newClass.id});
-            };
+            const foundTeacher = await User.findOne({
+                where:{
+                    fullName:fullName
+                }
+            });
+            if(foundTeacher) await UserClass.create({userId:foundTeacher.id,classId:newClass.id});
         });
+
         res.sendStatus(200);
     }catch(error){
         next(error);
     };
 });
 
-// PUT localhost:3000/api/classes/:classId
+// PUT localhost:3000/api/classes/
 router.put('/:classId',async(req, res, next) => {
     const notFoundMessage = 'The object you are trying to update does not exist!';
     try {
-        const data = {
-            name:req.body.name,
+        // updating the class data
+        const classData = {
+            name:req.body.className,
             school:req.body.school,
             grade:req.body.grade,
             period:req.body.period,
             letterDays:req.body.letterDays
         };
         const classToUpdate = await Class.findByPk(req.params.classId);
-
-        const userClasses = await UserClass.findAll({
-            where:{
-                classId:classToUpdate.id
-            }
-        });
-        console.log(userClasses);
-
         if(!classToUpdate) throw new Error(notFoundMessage);
-        await classToUpdate.update(data);
+        await classToUpdate.update(classData);
+
+        // updating the teacher data
+        const teacherData = req.body.teacherNames;
+        if(teacherData[0]!=='' || teacherData[1]!==''){
+            const userClasses = await UserClass.findAll({
+                where:{
+                    classId:req.params.classId
+                }
+            });
+            userClasses.forEach(async(userClass)=>{
+                await userClass.destroy();
+            });
+            teacherData.forEach(async(fullName)=>{
+                const foundTeacher = await User.findOne({
+                    where:{
+                        fullName:fullName
+                    }
+                });
+                if(foundTeacher) await UserClass.create({userId:foundTeacher.id,classId:classToUpdate.id});
+            });
+        };
+
         res.sendStatus(200);
     }catch(error){
         if(error.message===notFoundMessage){
