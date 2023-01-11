@@ -1,7 +1,7 @@
 export { default as Absences } from './Absences/Absences';
 export { default as AvailableCoverages } from './AvailableCoverages/AvailableCoverages';
 export { default as AllClassesPage } from './Classes/AllClasses/AllClassesPage';
-export { default as SingleClass } from './Classes/SingleClass/SingleClassPage';
+export { default as SingleClassPage } from './Classes/SingleClass/SingleClassPage';
 export { default as Home } from './Home/Home';
 export { default as Login } from './Login/Login';
 export { default as Navbar } from './Navbar/Navbar';
