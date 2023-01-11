@@ -5,7 +5,7 @@ import { NotFoundPage } from "..";
 import { setAllClasses } from "../../store/classSlice";
 import { set,setDay,setAllAbsences } from "../../store/absenceSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { SchoolDropdown,GradeDropdown,PeriodDropdown,LetterDaysSingleClass } from './'
+import { SchoolDropdown,GradeDropdown,PeriodDropdown,LetterDaysSingleClass } from '.'
 
 const formStyle = {
     display:'flex',
@@ -90,9 +90,9 @@ const SingleClass = () => {
             <form style={formStyle} onSubmit={updateClass}>
                 <div>
                     <input value={name} onChange={handleNameChange}/>
-                    <SchoolDropdown school={school} handleSchoolChange={handleSchoolChange}/>
-                    <GradeDropdown grade={grade} handleGradeChange={handleGradeChange}/>
-                    <PeriodDropdown period={period} handlePeriodChange={handlePeriodChange}/>
+                    <SchoolSelect school={school} handleSchoolChange={handleSchoolChange}/>
+                    <GradeSelect grade={grade} handleGradeChange={handleGradeChange}/>
+                    <PeriodSelect period={period} handlePeriodChange={handlePeriodChange}/>
                 </div>
                 <div>
                     <LetterDaysSingleClass letterDays={letterDays} handleLetterDaysChange={handleLetterDaysChange}/>

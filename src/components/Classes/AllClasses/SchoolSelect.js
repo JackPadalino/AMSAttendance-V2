@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SchoolDropdown = ({school,handleSchoolChange}) => {
+const SchoolSelect = ({school,handleSchoolChange}) => {
     return (
         <>
             <label htmlFor="school">MS/HS</label>
@@ -13,4 +13,4 @@ const SchoolDropdown = ({school,handleSchoolChange}) => {
     );
 };
 
-export default SchoolDropdown;
+export default SchoolSelect;

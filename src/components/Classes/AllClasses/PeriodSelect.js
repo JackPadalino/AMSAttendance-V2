@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PeriodDropdown = ({period,handlePeriodChange}) => {
+const PeriodSelect = ({period,handlePeriodChange}) => {
     return (
         <>
             <label htmlFor="period">Period</label>
@@ -18,4 +18,4 @@ const PeriodDropdown = ({period,handlePeriodChange}) => {
     );
 };
 
-export default PeriodDropdown;
+export default PeriodSelect;

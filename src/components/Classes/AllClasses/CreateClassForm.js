@@ -1,11 +1,14 @@
 import axios from 'axios';
-import React, { useState,useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { NotFoundPage } from "..";
-import { setAllClasses } from "../../store/classSlice";
-import { set,setDay,setAllAbsences } from "../../store/absenceSlice";
-import { useSelector, useDispatch } from "react-redux";
-import { SchoolDropdown,GradeDropdown,PeriodDropdown,LetterDays,TeacherDropdowns } from './'
+import React, { useState } from 'react';
+import { setAllClasses } from "../../../store/classSlice";
+import { useDispatch } from "react-redux";
+import { 
+    SchoolSelect,
+    GradeSelect,
+    PeriodSelect,
+    LetterDaysSelect,
+    Teacher1Select,
+    Teacher2Select } from '.'
 
 const formStyle = {
     display:'flex',
@@ -13,10 +16,8 @@ const formStyle = {
     gap:'10px'
 };
 
-const Classes = () => {
+const CreateClassForm = () => {
     const dispatch = useDispatch();
-    const [token, setToken] = useState(window.localStorage.getItem("token"));
-    const { allClasses } = useSelector((state) => state.class);
     const [name,setName] = useState('');
     const [school,setSchool] = useState('');
     const [grade,setGrade] = useState('');
@@ -83,38 +84,29 @@ const Classes = () => {
         setTeacherNames([teacher1Name,event.target.value]);
     };
 
-    if(!token) return <NotFoundPage/>
     return (
-        <div>
+        <>
             <h1>Add a class</h1>
             <form onSubmit={addClass} style={formStyle}>
                 <div>
                     <input placeholder="Class name" onChange={handleNameChange}/>
-                    <SchoolDropdown handleSchoolChange={handleSchoolChange}/>
-                    <GradeDropdown handleGradeChange={handleGradeChange}/>
-                    <PeriodDropdown handlePeriodChange={handlePeriodChange}/>
+                    <SchoolSelect handleSchoolChange={handleSchoolChange}/>
+                    <GradeSelect handleGradeChange={handleGradeChange}/>
+                    <PeriodSelect handlePeriodChange={handlePeriodChange}/>
                 </div>
                 <div>
-                    <LetterDays handleLetterDaysChange={handleLetterDaysChange}/>
+                    <LetterDaysSelect handleLetterDaysChange={handleLetterDaysChange}/>
                 </div>
                 <div>
-                    <TeacherDropdowns handleTeacher1Change={handleTeacher1Change} handleTeacher2Change={handleTeacher2Change}/>
+                    <Teacher1Select handleTeacher1Change={handleTeacher1Change}/>
+                    <Teacher2Select handleTeacher2Change={handleTeacher2Change}/>
                 </div>
                 {!duplicateTeacherNameMessage && <button style={{width:'60px'}}>Submit</button>}{}
                 {duplicateTeacherNameMessage && <p style={{ color: "red", marginTop: "10px" }}>Warning: Duplicate teacher selected!</p>}
                 {successMessage && <p style={{ color: "green", marginTop: "10px" }}>Class '{name}' successfully created.</p>}
             </form>
-            <div>
-                {allClasses.map((eachClass) => {
-                    return (
-                        <div key={eachClass.id}>
-                            <Link to={`/classes/${eachClass.id}`}>{eachClass.name}</Link>
-                        </div>  
-                    );
-                })}
-            </div>
-        </div>
+        </>
     );
 };
 
-export default Classes;
+export default CreateClassForm;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const GradeDropdown = ({grade,handleGradeChange}) => {
+const GradeSelect = ({grade,handleGradeChange}) => {
     return (
         <>
             <label htmlFor="grade">Grade</label>
@@ -18,4 +18,4 @@ const GradeDropdown = ({grade,handleGradeChange}) => {
     );
 };
 
-export default GradeDropdown;
+export default GradeSelect;
