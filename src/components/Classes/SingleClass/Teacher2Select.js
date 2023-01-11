@@ -8,7 +8,7 @@ const Teacher2Select = ({teacher2Name,handleTeacher2Change}) => {
         <>
             <label htmlFor="teacher 2">Teacher</label>
             <select name='teacher 2' value={teacher2Name} onChange={handleTeacher2Change}>
-                <option value="-">-</option>
+                <option value=''>-</option>
                 {allUsers.map((user) => {
                     return (
                         <option key={user.id} value={user.fullName}>{user.fullName}</option>

@@ -139,6 +139,7 @@ router.post('/',async(req, res, next) => {
 router.put('/:classId',async(req, res, next) => {
     const notFoundMessage = 'The object you are trying to update does not exist!';
     try {
+        // updating the class data
         const classData = {
             name:req.body.className,
             school:req.body.school,
@@ -146,34 +147,30 @@ router.put('/:classId',async(req, res, next) => {
             period:req.body.period,
             letterDays:req.body.letterDays
         };
-        const teacherData = req.body.teacherNames;
-
-        // updating the class data
         const classToUpdate = await Class.findByPk(req.params.classId);
         if(!classToUpdate) throw new Error(notFoundMessage);
         await classToUpdate.update(classData);
 
-        console.log({'class data':classData});
-        console.log({'teacher data':teacherData});
-
-        // // updating the teachers of the class
-        // teacherData.forEach(async(fullName)=>{
-        //     const foundTeacher = await User.findOne({
-        //         where:{
-        //             fullName:fullName
-        //         }
-        //     });
-        //     if(foundTeacher){
-        //         const userClass = await UserClass.findOne({
-        //             where:{
-        //                 userId:foundTeacher.id,
-        //                 classId:classToUpdate.id
-        //             }
-        //         });
-        //         await userClass.destroy();
-        //         await UserClass.create({userId:foundTeacher.id,classId:classToUpdate.id});
-        //     };
-        // });
+        // updating the teacher data
+        const teacherData = req.body.teacherNames;
+        if(teacherData[0]!=='' || teacherData[1]!==''){
+            const userClasses = await UserClass.findAll({
+                where:{
+                    classId:req.params.classId
+                }
+            });
+            userClasses.forEach(async(userClass)=>{
+                await userClass.destroy();
+            });
+            teacherData.forEach(async(fullName)=>{
+                const foundTeacher = await User.findOne({
+                    where:{
+                        fullName:fullName
+                    }
+                });
+                if(foundTeacher) await UserClass.create({userId:foundTeacher.id,classId:classToUpdate.id});
+            });
+        };
 
         res.sendStatus(200);
     }catch(error){

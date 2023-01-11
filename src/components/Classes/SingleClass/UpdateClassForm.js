@@ -59,16 +59,15 @@ const UpdateClassForm = () => {
                 letterDays,
                 teacherNames
             };
-            console.log(body);
-            // await axios.put(`/api/classes/${id}`,body);
-            // const allClasses = await axios.get(`/api/classes`);
-            // dispatch(setAllClasses(allClasses.data));
+            await axios.put(`/api/classes/${id}`,body);
+            const allClasses = await axios.get(`/api/classes`);
+            dispatch(setAllClasses(allClasses.data));
             setSuccessMessage(true);
         };
     };
 
     const handleNameChange = (event) =>{
-        setName(event.target.value);
+        setClassName(event.target.value);
     };
 
     const handleSchoolChange = (event) =>{
