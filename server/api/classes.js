@@ -153,23 +153,27 @@ router.put('/:classId',async(req, res, next) => {
         if(!classToUpdate) throw new Error(notFoundMessage);
         await classToUpdate.update(classData);
 
-        // updating the teachers of the class
-        const userClasses = await UserClass.findAll({
-            where:{
-                classId:classToUpdate.id
-            }
-        });
-        userClasses.forEach(async(userClass)=>{
-            if(userClass) await userClass.destroy();
-        });
-        teacherData.forEach(async(fullName)=>{
-            const foundTeacher = await User.findOne({
-                where:{
-                    fullName:fullName
-                }
-            });
-            if(foundTeacher) await UserClass.create({userId:foundTeacher.id,classId:classToUpdate.id});
-        });
+        console.log({'class data':classData});
+        console.log({'teacher data':teacherData});
+
+        // // updating the teachers of the class
+        // teacherData.forEach(async(fullName)=>{
+        //     const foundTeacher = await User.findOne({
+        //         where:{
+        //             fullName:fullName
+        //         }
+        //     });
+        //     if(foundTeacher){
+        //         const userClass = await UserClass.findOne({
+        //             where:{
+        //                 userId:foundTeacher.id,
+        //                 classId:classToUpdate.id
+        //             }
+        //         });
+        //         await userClass.destroy();
+        //         await UserClass.create({userId:foundTeacher.id,classId:classToUpdate.id});
+        //     };
+        // });
 
         res.sendStatus(200);
     }catch(error){

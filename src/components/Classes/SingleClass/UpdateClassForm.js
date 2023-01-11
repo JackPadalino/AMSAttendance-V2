@@ -26,9 +26,9 @@ const UpdateClassForm = () => {
     const [grade,setGrade] = useState('');
     const [period,setPeriod] = useState('');
     const [letterDays,setLetterDays] = useState([]);
-    const [teacher1Name,setTeacher1Name] = useState(null);
-    const [teacher2Name,setTeacher2Name] = useState(null);
-    const [teacherNames,setTeacherNames] = useState([]);
+    const [teacher1Name,setTeacher1Name] = useState('');
+    const [teacher2Name,setTeacher2Name] = useState('');
+    const [teacherNames,setTeacherNames] = useState(['','']);
     const [duplicateTeacherNameMessage,setDuplicateTeacherNameMessage] = useState(false);
     const [successMessage,setSuccessMessage] = useState(false);
     
@@ -40,8 +40,8 @@ const UpdateClassForm = () => {
         setGrade(foundClass.data.grade);
         setPeriod(foundClass.data.period);
         setLetterDays(foundClass.data.letterDays);
-        setTeacher1Name(foundClass.data.users[0].fullName);
-        setTeacher2Name(foundClass.data.users[1].fullName);
+        if(foundClass.data.users[0]) setTeacher1Name(foundClass.data.users[0].fullName);
+        if(foundClass.data.users[1]) setTeacher2Name(foundClass.data.users[1].fullName);
     };
 
     useEffect(() => {
@@ -59,9 +59,10 @@ const UpdateClassForm = () => {
                 letterDays,
                 teacherNames
             };
-            await axios.put(`/api/classes/${id}`,body);
-            const allClasses = await axios.get(`/api/classes`);
-            dispatch(setAllClasses(allClasses.data));
+            console.log(body);
+            // await axios.put(`/api/classes/${id}`,body);
+            // const allClasses = await axios.get(`/api/classes`);
+            // dispatch(setAllClasses(allClasses.data));
             setSuccessMessage(true);
         };
     };
