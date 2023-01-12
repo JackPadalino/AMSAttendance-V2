@@ -182,4 +182,20 @@ router.put('/:classId',async(req, res, next) => {
     };
 });
 
+// DELETE localhost:3000/api/classes/
+router.delete('/:classId',async(req,res,next)=>{
+    const notFoundMessage = 'The object you are trying to delete does not exist!';
+    try{
+        const classToDelete = await Class.findByPk(req.params.classId);
+        if(!classToDelete) throw new Error(notFoundMessage);
+        await classToDelete.destroy();
+        res.sendStatus(200);
+    }catch(error){
+        if(error.message===notFoundMessage){
+            return res.status(404).send({message:notFoundMessage});
+        }
+        next(error);
+    };
+});
+
 module.exports = router;
