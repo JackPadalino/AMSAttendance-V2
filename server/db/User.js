@@ -33,7 +33,7 @@ const User = db.define("user", {
   },
   phoneNumber: {
     type: Sequelize.STRING,
-    allowNull: false,
+    //allowNull: false,
     validate: {
       notEmpty: true,
     },
