@@ -15,6 +15,7 @@ const AllClassesPage = () => {
                 <CreateClassForm />
             </div>
             <div>
+                <h1>All classes</h1>
                 {allClasses.map((eachClass) => {
                     return (
                         <div key={eachClass.id}>

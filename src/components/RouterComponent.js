@@ -4,10 +4,10 @@ import {
   Home,
   Login,
   Absences,
-  Teachers,
+  AllTeachersPage,
   AllClassesPage,
   AvailableCoverages,
-  SingleTeacher,
+  SingleTeacherPage,
   SingleClassPage
 } from ".";
 
@@ -18,8 +18,8 @@ const RouterComponent = () => {
       <Route exact path="/" element={<Home />} />
       <Route exact path="/login" element={<Login />} />
       <Route exact path="/absences" element={<Absences />} />
-      <Route exact path="/teachers" element={<Teachers />} />
-      <Route exact path="/teachers/:id" element={<SingleTeacher />} />
+      <Route exact path="/teachers" element={<AllTeachersPage />} />
+      <Route exact path="/teachers/:id" element={<SingleTeacherPage />} />
       <Route exact path="/classes" element={<AllClassesPage />} />
       <Route exact path="/classes/:id" element={<SingleClassPage />} />
       <Route exact path="/coverages/:classId/:school/:period/:letter" element={<AvailableCoverages />} />

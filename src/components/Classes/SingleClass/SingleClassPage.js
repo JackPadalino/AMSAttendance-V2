@@ -9,6 +9,7 @@ const SingleClassPage = () => {
     return (
         <div>
             <UpdateClassForm/>
+            <p style={{color:'red'}}>delete</p>
         </div>
     );
 };
