@@ -30,7 +30,7 @@ const SingleClassPage = () => {
             <UpdateClassForm/>
             {!confirmDeleteMessage && <button onClick={() => confirmDelete()}>Delete</button>}
             {confirmDeleteMessage && <p style={{color:'red'}}>Are you sure you want to delete this class?</p>}
-            {confirmDeleteMessage && <button onClick={() => confirmDelete()}>No</button>}
+            {confirmDeleteMessage && <button onClick={() => confirmDelete()}>Cancel</button>}
             {confirmDeleteMessage && <button onClick={() => deleteClass()}>Delete</button>}
         </div>
     );
