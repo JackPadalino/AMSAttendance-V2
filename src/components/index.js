@@ -8,5 +8,4 @@ export { default as Navbar } from './Navbar/Navbar';
 export { default as NotFoundPage } from './NotFoundPage/NotFoundPage';
 export { default as SingleTeacherPage } from './Teachers/SingleTeacherPage';
 export { default as AllTeachersPage } from './Teachers/AllTeachersPage';
-export { default as ConfirmDeletePage } from './ConfirmDeletePage/ConfirmDeletePage';
 export { default as RouterComponent } from './RouterComponent';
