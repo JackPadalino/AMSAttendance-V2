@@ -10,13 +10,6 @@ const User = db.define("user", {
   //     primaryKey: true,
   //     defaultValue: UUIDV4
   // },
-  fullName: {
-    type: Sequelize.STRING,
-    validate: {
-        notEmpty: true,
-    },
-    allowNull: false,
-  },
   firstName: {
     type: Sequelize.STRING,
     validate: {
@@ -30,6 +23,12 @@ const User = db.define("user", {
         notEmpty: true,
     },
     allowNull: false,
+  },
+  fullName: {
+    type: Sequelize.STRING,
+    validate: {
+        notEmpty: true,
+    }
   },
   phoneNumber: {
     type: Sequelize.STRING,
@@ -80,6 +79,11 @@ const User = db.define("user", {
   //   type: Sequelize.INTEGER,
   //   defaultValue:0
   // },
+});
+
+// creating a fullName field for a newly created user
+User.beforeCreate((user) => {
+  user.fullName = `${user.firstName} ${user.lastName}`;
 });
 
 User.addHook("beforeSave", async (user) => {
