@@ -60,4 +60,20 @@ router.post('/',async(req, res, next) => {
     };
 });
 
+// DELETE localhost:3000/api/users/
+router.delete('/:userId',async(req,res,next)=>{
+    const notFoundMessage = 'The object you are trying to delete does not exist!';
+    try{
+        const userToDelete = await User.findByPk(req.params.userId);
+        if(!userToDelete) throw new Error(notFoundMessage);
+        await userToDelete.destroy();
+        res.sendStatus(200);
+    }catch(error){
+        if(error.message===notFoundMessage){
+            return res.status(404).send({message:notFoundMessage});
+        }
+        next(error);
+    };
+});
+
 module.exports = router;
