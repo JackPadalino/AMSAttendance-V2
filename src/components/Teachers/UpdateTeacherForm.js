@@ -5,10 +5,9 @@ import { NotFoundPage } from "..";
 import { useDispatch } from "react-redux";
 import { setAllUsers } from "../../store/userSlice";
 
-const SingleTeacher = () => {
+const UpdateTeacherForm = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
-    const [token, setToken] = useState(window.localStorage.getItem("token"));
     const [firstName,setFirstName] = useState('');
     const [lastName,setLastName] = useState('');
     const [phoneNumber,setPhoneNumber] = useState('');
@@ -55,7 +54,6 @@ const SingleTeacher = () => {
         fetchUser();
       }, []);
 
-    if(!token) return <NotFoundPage/>
     return (
         <div>
             <h1>Teacher profile</h1>
@@ -70,4 +68,4 @@ const SingleTeacher = () => {
     );
 };
 
-export default SingleTeacher;
+export default UpdateTeacherForm;

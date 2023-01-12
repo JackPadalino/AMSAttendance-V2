@@ -1,17 +1,17 @@
-import React,{ useState } from 'react';
-import { NotFoundPage } from "../..";
-import { UpdateClassForm } from '.'
+import React, { useState } from 'react';
+import { NotFoundPage } from "..";
+import { UpdateTeacherForm } from ".";
 
-const SingleClassPage = () => {
+const SingleTeacherPage = () => {
     const [token, setToken] = useState(window.localStorage.getItem("token"));
 
     if(!token) return <NotFoundPage/>
     return (
         <div>
-            <UpdateClassForm/>
+            <UpdateTeacherForm/>
             <p style={{color:'red'}}>delete</p>
         </div>
     );
 };
 
-export default SingleClassPage;
+export default SingleTeacherPage;

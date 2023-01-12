@@ -5,7 +5,7 @@ import { NotFoundPage } from "..";
 import { setAllUsers,addNewUser } from "../../store/userSlice";
 import { useSelector, useDispatch } from "react-redux";
 
-const Teachers = () => {
+const AllTeachersPage = () => {
     const dispatch = useDispatch();
     const { allUsers } = useSelector((state) => state.user);
     const [token, setToken] = useState(window.localStorage.getItem("token"));
@@ -61,4 +61,4 @@ const Teachers = () => {
     );
 };
 
-export default Teachers;
+export default AllTeachersPage;
