@@ -9,8 +9,13 @@ import { setAllClasses } from "../../../store/classSlice";
 const SingleClassPage = () => {
     const { id } = useParams();
     const [token, setToken] = useState(window.localStorage.getItem("token"));
+    const [confirmDeleteMessage,setConfirmDeleteMessage] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const confirmDelete = () =>{
+        confirmDeleteMessage ? setConfirmDeleteMessage(false) : setConfirmDeleteMessage(true);
+    };
 
     const deleteClass = async()=> {
         await axios.delete(`/api/classes/${id}`);
@@ -23,7 +28,10 @@ const SingleClassPage = () => {
     return (
         <div>
             <UpdateClassForm/>
-            <button onClick={() => deleteClass()}>Delete</button>
+            {!confirmDeleteMessage && <button onClick={() => confirmDelete()}>Delete</button>}
+            {confirmDeleteMessage && <p style={{color:'red'}}>Are you sure you want to delete this class?</p>}
+            {confirmDeleteMessage && <button onClick={() => confirmDelete()}>No</button>}
+            {confirmDeleteMessage && <button onClick={() => deleteClass()}>Delete</button>}
         </div>
     );
 };
