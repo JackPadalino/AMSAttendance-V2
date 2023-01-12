@@ -23,9 +23,9 @@ const CreateClassForm = () => {
     const [grade,setGrade] = useState('');
     const [period,setPeriod] = useState('');
     const [letterDays,setLetterDays] = useState([]);
-    const [teacher1Name,setTeacher1Name] = useState(null);
-    const [teacher2Name,setTeacher2Name] = useState(null);
-    const [teacherNames,setTeacherNames] = useState([]);
+    const [teacher1Name,setTeacher1Name] = useState('');
+    const [teacher2Name,setTeacher2Name] = useState('');
+    const [teacherNames,setTeacherNames] = useState(['','']);
     const [duplicateTeacherNameMessage,setDuplicateTeacherNameMessage] = useState(false);
     const [successMessage,setSuccessMessage] = useState(false);
     
