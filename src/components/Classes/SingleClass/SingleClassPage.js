@@ -1,15 +1,29 @@
+import axios from 'axios';
 import React,{ useState } from 'react';
+import { useNavigate,useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { NotFoundPage } from "../..";
 import { UpdateClassForm } from '.'
+import { setAllClasses } from "../../../store/classSlice";
 
 const SingleClassPage = () => {
+    const { id } = useParams();
     const [token, setToken] = useState(window.localStorage.getItem("token"));
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const deleteClass = async()=> {
+        await axios.delete(`/api/classes/${id}`);
+        const updatedClasses = await axios.get('/api/classes');
+        dispatch(setAllClasses(updatedClasses.data));
+        navigate('/classes');
+    };
 
     if(!token) return <NotFoundPage/>
     return (
         <div>
             <UpdateClassForm/>
-            <p style={{color:'red'}}>delete</p>
+            <button onClick={() => deleteClass()}>Delete</button>
         </div>
     );
 };
