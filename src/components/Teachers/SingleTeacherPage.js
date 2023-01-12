@@ -8,7 +8,9 @@ const SingleTeacherPage = () => {
     if(!token) return <NotFoundPage/>
     return (
         <div>
-            <UpdateTeacherForm/>
+            <div>
+                <UpdateTeacherForm/>
+            </div>
             <p style={{color:'red'}}>delete</p>
         </div>
     );

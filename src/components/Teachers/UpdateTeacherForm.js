@@ -55,7 +55,7 @@ const UpdateTeacherForm = () => {
       }, []);
 
     return (
-        <div>
+        <>
             <h1>Teacher profile</h1>
             <form onSubmit={updateTeacher}>
                 <input value={firstName} onChange={handleFirstNameChange}/>
@@ -64,7 +64,7 @@ const UpdateTeacherForm = () => {
                 <button>Submit</button>
             </form>
             {userUpdatedMessage && <p style={{ color: "green", marginTop: "10px" }}>Teacher successfully updated.</p>}
-        </div>
+        </>
     );
 };
 
